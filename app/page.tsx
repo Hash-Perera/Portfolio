@@ -1,29 +1,135 @@
 'use client';
+
 import { useRef, useState } from 'react';
-import { portfolio, projects, skills } from './portfolio';
+import { portfolio, projects, otherProjects, skills, experience, education, publications } from './portfolio';
+
+const navigation = [
+  ['About', 'about'], ['Experience', 'experience'], ['Projects', 'projects'],
+  ['Skills', 'skills'], ['Résumé', 'resume'],
+];
+
+function ProjectVisual({ project }: { project: (typeof projects)[number] }) {
+  return (
+    <div className={`project-art ${project.color}`} aria-hidden="true">
+      <div className="project-overview">
+        <div className="overview-top"><span>{project.name}</span><span>WORKFLOW OVERVIEW</span></div>
+        <h4>{project.label}</h4>
+        {project.visual === 'mobile' ? (
+          <div className="field-overview"><div className="phone-outline"><div className="phone-notch"/><span>OUTGROWER</span><strong>Ready for<br/>the field.</strong><div className="offline-pill">● Offline access</div><div className="phone-record"/><div className="phone-record"/></div><div className="field-facts"><strong>500+</strong><span>users enabled</span><small>Hive storage<br/>Queued sync<br/>Retry handling</small></div></div>
+        ) : (
+          <div className={`workflow-nodes ${project.visual}`}>
+            {project.workflow.map((step, index) => <div key={step}><span>0{index + 1}</span><strong>{step}</strong><i/><i/></div>)}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const [menu, setMenu] = useState(false);
   const [selected, setSelected] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
+  const project = projects[selected];
+
   function toggleTheme() {
     const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem('portfolio-theme', theme); } catch {}
   }
+
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
-    <header className="header"><a className="brand" href="#" aria-label="Portfolio home">{portfolio.initials}<span>.</span></a><nav className={menu ? 'nav open' : 'nav'} aria-label="Main navigation">{['About', 'Experience', 'Projects', 'Skills', 'Résumé'].map(n => <a key={n} href={`#${n === 'Résumé' ? 'resume' : n.toLowerCase()}`} onClick={() => setMenu(false)}>{n}</a>)}</nav><div className="header-actions"><button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle light or dark theme"><span className="moon" aria-hidden="true">☾</span><span className="sun" aria-hidden="true">☀</span></button><a className="contact-link" href="#contact">Let’s talk ↗</a><button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? '✕' : '☰'}</button></div></header>
+    <header className="header">
+      <a className="brand" href="#main" aria-label={`${portfolio.name}, home`}>{portfolio.initials}<span>.</span></a>
+      <nav id="navigation" className={menu ? 'nav open' : 'nav'} aria-label="Main navigation">
+        {navigation.map(([name, id]) => <a key={id} href={`#${id}`} onClick={() => setMenu(false)}>{name}</a>)}
+      </nav>
+      <div className="header-actions">
+        <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle light or dark theme"><span className="moon" aria-hidden="true">☾</span><span className="sun" aria-hidden="true">☀</span></button>
+        <a className="contact-link" href="#contact">Let’s talk ↗</a>
+        <button className="menu-toggle" aria-label="Toggle navigation" aria-controls="navigation" aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? '✕' : '☰'}</button>
+      </div>
+    </header>
+
     <main id="main">
-      <section className="hero container"><div className="hero-copy"><div className="eyebrow"><span className="status-dot"/> SOFTWARE ENGINEER · 3 YEARS OF EXPERIENCE</div><p className="intro">Hi there, I’m <strong>{portfolio.name}</strong> <span className="wave">↗</span></p><h1>Thoughtful code.<br/>Meaningful <em>experiences.</em></h1><p className="hero-description">I turn complex problems into simple, reliable software.<br className="desktop-break"/> Building for the web, with people at the heart of it.</p><div className="button-row"><a className="button primary" href="#projects">Explore my work <span>↗</span></a><a className="button secondary" href={portfolio.resume} download>Download résumé <span>↓</span></a></div><div className="hero-foot"><span className="tiny-line"/> Curiosity-driven. Detail-oriented. Always learning.</div></div><div className="hero-art" aria-label="Decorative developer workspace"><div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/><div className="floating-tag top-tag"><span className="status-dot"/> Built with intention</div><div className="code-card"><div className="window-bar"><i/><i/><i/><span>hello.ts</span><span>⌘</span></div><div className="code-body"><p><span className="code-purple">const</span> developer = {'{'}</p><p className="indent">role: <span className="code-green">&apos;Software Engineer&apos;</span>,</p><p className="indent">experience: <span className="code-orange">3</span>,</p><p className="indent">mindset: <span className="code-green">&apos;Always curious&apos;</span>,</p><p className="indent">focus: [</p><p className="double-indent code-green">&apos;Clean code&apos;,</p><p className="double-indent code-green">&apos;Real-world impact&apos;</p><p className="indent">],</p><p>{'}'};</p><p className="code-comment">{"// Let’s build something good."}</p></div></div><div className="floating-tag bottom-tag"><span className="spark">✳</span> Ideas → thoughtful software</div><span className="art-plus">+</span></div></section>
-      <div className="principles"><div className="container"><span>FROM IDEA TO IMPACT</span><p>Clean architecture <b>✳</b> Thoughtful interfaces <b>✳</b> Reliable systems <b>✳</b> Continuous learning</p></div></div>
-      <section className="section container about" id="about"><div><p className="eyebrow">01 / A LITTLE ABOUT ME</p><h2>An engineer’s mind.<br/><span>A builder’s heart.</span></h2></div><div className="about-copy"><p className="large-copy">I’m a software engineer with 3 years of experience and a simple goal: make technology feel effortless.</p><p>I enjoy connecting the dots between a thoughtful interface and the systems that power it. For me, good software is useful, understandable, and built to last.</p><p>My approach is rooted in curiosity: ask good questions, break down the problem, and keep improving along the way.</p><div className="about-stats"><div><strong>03<span>+</span></strong><small>Years of experience</small></div><div><strong>End to end</strong><small>A product-minded approach</small></div></div></div></section>
-      <section className="section container" id="experience"><div className="section-heading"><div><p className="eyebrow">02 / THE JOURNEY SO FAR</p><h2>Experience that <span>builds.</span></h2></div><p>A little better with every challenge.</p></div><div className="experience-card"><div className="experience-date">3 YEARS OF EXPERIENCE<span className="sample-label">Add your work history</span></div><div><h3>Software Engineer</h3><p className="company">Your company · Employment dates</p><p>Use this space to tell the story of your role: the problems you solved, the systems you built, and the people you collaborated with.</p><ul><li>Highlight an important feature or product you delivered.</li><li>Describe a technical challenge and how you approached it.</li><li>Add a measurable outcome where you have one.</li></ul></div><span className="experience-icon">↗</span></div></section>
-      <section className="section projects-section" id="projects"><div className="container"><div className="section-heading"><div><p className="eyebrow">03 / SELECTED WORK</p><h2>Small details.<br/><span>Real possibilities.</span></h2></div><p>A few things I could build.<br/><span className="sample-note">Illustrative projects · replace with your work</span></p></div><div className="project-grid">{projects.map((project, index) => <article className="project-card" key={project.name}><div className={`project-art ${project.color}`} aria-hidden="true"><div className="mini-app"><div className="mini-sidebar"><strong>{index === 0 ? '◉' : index === 2 ? 'f.' : '▧'}</strong><i/><i/><i/><i/></div><div className="mini-content"><div className="mini-top"><span>{project.name}</span><span>•••</span></div><h4>{project.label}</h4>{index === 0 ? <div className="mini-board">{['To do', 'In progress', 'Done'].map((s,i) => <div key={s}><small>{s}</small><div className="mini-task"><i/><i/><b className={`task-${i}`}/></div><div className="mini-task"><i/><i/></div></div>)}</div> : index === 1 ? <><div className="mini-stats"><div><small>Revenue</small><b>$24,860</b></div><div><small>Orders</small><b>1,248</b></div></div><div className="bar-chart">{[24,42,34,62,49,75,66,91,77,100].map((h,i) => <i key={i} style={{height:`${h}%`}}/>)}</div></> : <div className="mini-editor"><span>ON CURIOSITY & CRAFT</span><h5>Make room for<br/>your next idea.</h5><div/><div/><div/></div>}</div></div></div><div className="project-info"><p className="eyebrow">{project.type}</p><h3>{project.name}<button onClick={() => {setSelected(index); dialog.current?.showModal();}} aria-label={`Read about ${project.name}`}>↗</button></h3><p>{project.description}</p><div className="tags">{project.tags.map(t => <span key={t}>{t}</span>)}</div></div></article>)}</div></div></section>
-      <section className="section container" id="skills"><div className="section-heading"><div><p className="eyebrow">04 / MY TOOLKIT</p><h2>The tools behind <span>the work.</span></h2></div><p>Example toolkit — customize to your strengths.</p></div><div className="skills-grid">{Object.entries(skills).map(([category, items],i) => <div className="skill-group" key={category}><span className="skill-number">0{i+1}</span><h3>{category}</h3><div className="skill-items">{items.map(s => <span key={s}>{s}</span>)}</div></div>)}</div></section>
-      <section className="container resume-section" id="resume"><div className="resume-card"><div className="document-art" aria-hidden="true"><span>CV<span>↗</span></span><i/><i/><i/><div/><i/><i/></div><div className="resume-copy"><p className="eyebrow">05 / TAKE IT WITH YOU</p><h2>The short version,<br/><span>on paper.</span></h2><p>A quick overview of my experience, skills,<br/>and the work I’ve done.</p></div><div className="resume-actions"><a className="button primary" href={portfolio.resume} download>Download résumé <span>↓</span></a><a className="text-link" href={portfolio.resume} target="_blank" rel="noreferrer">View résumé <span>↗</span></a><small>PDF · Sample résumé template</small></div></div></section>
-      <section className="section container contact-section" id="contact"><p className="eyebrow">06 / WHAT’S NEXT?</p><h2>Good things start<br/>with a <em>conversation.</em></h2><p>Have a project in mind, an interesting opportunity,<br/>or just want to say hello? I’d love to hear from you.</p><a className="email-link" href={`mailto:${portfolio.email}`}>{portfolio.email} <span>↗</span></a><p className="sample-note">Replace with your email before publishing.</p><div className="social-links">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}</div></section>
-    </main><footer className="container footer"><a className="brand" href="#">{portfolio.initials}<span>.</span></a><p>© {new Date().getFullYear()} {portfolio.name}. Built with care.</p><a href="#main">Back to top ↑</a></footer>
-    <dialog ref={dialog} aria-labelledby="project-title" className="project-dialog" onClick={e => {if(e.target === e.currentTarget) dialog.current?.close();}}><div><p className="eyebrow">ILLUSTRATIVE PROJECT</p><h2 id="project-title">{projects[selected].name}</h2><p>{projects[selected].detail}</p><form method="dialog"><button className="button primary">Close details ×</button></form></div></dialog>
+      <section className="hero container">
+        <div className="hero-copy">
+          <div className="eyebrow"><span className="status-dot"/> SOFTWARE ENGINEER · 3+ YEARS OF EXPERIENCE</div>
+          <p className="intro">Hi there, I’m <strong>{portfolio.name}</strong> <span className="wave">↗</span></p>
+          <h1>Thoughtful code.<br/>Meaningful <em>experiences.</em></h1>
+          <p className="hero-description">From enterprise .NET systems to Angular and NestJS platforms,<br className="desktop-break"/> I build, support, and ship software people can rely on.</p>
+          <div className="button-row"><a className="button primary" href="#projects">Explore my work <span>↗</span></a><a className="button secondary" href={portfolio.resume} download="Hashan-Perera-Resume.pdf">Download résumé <span>↓</span></a></div>
+          <div className="hero-foot"><span className="tiny-line"/> {portfolio.location} · Angular / React / .NET / NestJS / AWS</div>
+          {(portfolio.github || portfolio.linkedin) && <div className="hero-socials">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}</div>}
+        </div>
+        <div className="hero-art" aria-label="Decorative code card introducing Hashan">
+          <div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/>
+          <div className="floating-tag top-tag"><span className="status-dot"/> Built with intention</div>
+          <div className="code-card"><div className="window-bar"><i/><i/><i/><span>hashan.ts</span><span>⌘</span></div>
+            <div className="code-body"><p><span className="code-purple">const</span> developer = {'{'}</p><p className="indent">name: <span className="code-green">&apos;Hashan Perera&apos;</span>,</p><p className="indent">experience: <span className="code-green">&apos;3+ years&apos;</span>,</p><p className="indent">basedIn: <span className="code-green">&apos;Sri Lanka&apos;</span>,</p><p className="indent">focus: [</p><p className="double-indent code-green">&apos;Reliable systems&apos;,</p><p className="double-indent code-green">&apos;Real-world impact&apos;</p><p className="indent">],</p><p>{'}'};</p><p className="code-comment">{'// Always learning. Always building.'}</p></div>
+          </div>
+          <div className="floating-tag bottom-tag"><span className="spark">✳</span> Ideas → production-ready software</div><span className="art-plus">+</span>
+        </div>
+      </section>
+
+      <div className="principles"><div className="container"><span>FROM IDEA TO IMPACT</span><p>Clean architecture <b>✳</b> Secure APIs <b>✳</b> Reliable systems <b>✳</b> Continuous learning</p></div></div>
+
+      <section className="section container about" id="about">
+        <div><p className="eyebrow">01 / A LITTLE ABOUT ME</p><h2>An engineer’s mind.<br/><span>A builder’s heart.</span></h2></div>
+        <div className="about-copy"><p className="large-copy">{portfolio.about[0]}</p>{portfolio.about.slice(1).map(p => <p key={p}>{p}</p>)}
+          <div className="about-stats"><div><strong>03<span>+</span></strong><small>Years of experience</small></div><div><strong>500<span>+</span></strong><small>Outgrower users enabled</small></div><div><strong>03</strong><small>Engineers on my lead project</small></div></div>
+        </div>
+      </section>
+
+      <section className="section container" id="experience">
+        <div className="section-heading"><div><p className="eyebrow">02 / THE JOURNEY SO FAR</p><h2>Experience that <span>builds.</span></h2></div><p>From trainee to leading delivery,<br/>and keeping enterprise systems reliable.</p></div>
+        <div className="experience-list">{experience.map(job => <article className="experience-card" key={`${job.company}-${job.role}`}>
+          <div className="experience-date">{job.dates}{job.current && <span className="current-role"><span className="status-dot"/> Current role</span>}</div>
+          <div><h3>{job.role}</h3><p className="company">{job.company}</p><p>{job.summary}</p>{job.highlights.length > 0 && <ul>{job.highlights.map(point => <li key={point}>{point}</li>)}</ul>}{job.tags.length > 0 && <div className="tags experience-tags">{job.tags.map(tag => <span key={tag}>{tag}</span>)}</div>}</div>
+          <span className="experience-icon" aria-hidden="true">↗</span>
+        </article>)}</div>
+      </section>
+
+      <section className="section projects-section" id="projects"><div className="container">
+        <div className="section-heading"><div><p className="eyebrow">03 / SELECTED WORK</p><h2>Real challenges.<br/><span>Purposeful software.</span></h2></div><p>Enterprise platforms, tools for the field,<br/>and research that connects AI with real needs.</p></div>
+        <div className="project-grid">{projects.map((item, index) => <article className="project-card" key={item.name}>
+          <ProjectVisual project={item}/>
+          <div className="project-info"><p className="eyebrow">{item.type}</p><h3>{item.name}<button onClick={() => { setSelected(index); dialog.current?.showModal(); }} aria-label={`Read about ${item.name}`}>↗</button></h3><p>{item.description}</p><div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
+        </article>)}</div>
+        <div className="more-work"><p className="eyebrow">ALSO BUILT AT DIGITUSTEC</p><div className="other-project-grid">{otherProjects.map(item => <article key={item.name}><h3>{item.name}</h3><p>{item.description}</p><small>{item.stack}</small>{item.url && <a className="project-external" href={item.url} target="_blank" rel="noreferrer">Visit CYOL ↗</a>}</article>)}</div></div>
+      </div></section>
+
+      <section className="section container" id="skills">
+        <div className="section-heading"><div><p className="eyebrow">04 / MY TOOLKIT</p><h2>The tools behind <span>the work.</span></h2></div><p>Grounded in engineering fundamentals.<br/>Always making room to learn.</p></div>
+        <div className="skills-grid">{Object.entries(skills).map(([category, items], i) => <div className="skill-group" key={category}><span className="skill-number">0{i + 1}</span><h3>{category}</h3><div className="skill-items">{items.map(skill => <span key={skill}>{skill}</span>)}</div></div>)}</div>
+      </section>
+
+      <section className="section container learning-section" id="education">
+        <div className="section-heading"><div><p className="eyebrow">05 / LEARNING & RESEARCH</p><h2>Curiosity, <span>put to work.</span></h2></div><p>A foundation in software engineering,<br/>with a growing interest in applied AI.</p></div>
+        <div className="learning-grid"><div><h3 className="learning-label">Education</h3>{education.map(item => <article className="education-item" key={item.title}><span>{item.dates}</span><h4>{item.title}</h4>{item.subtitle && <p>{item.subtitle}</p>}<p>{item.institution}</p><strong>{item.result}</strong></article>)}</div>
+          <div><h3 className="learning-label">Research & publications</h3>{publications.map(item => <article className="publication-item" key={item.title}><p className="eyebrow">{item.note}</p><h4>{item.title}</h4><p>{item.venue}</p>{item.url && <a className="project-external" href={item.url} target="_blank" rel="noreferrer">Read publication ↗</a>}</article>)}<div className="research-note"><span>✳</span><p><strong>InsureGeini</strong><br/>Final-year research project · Grade A · NBQSA selected</p></div></div>
+        </div>
+      </section>
+
+      <section className="container resume-section" id="resume"><div className="resume-card">
+        <div className="document-art" aria-hidden="true"><span>CV<span>↗</span></span><i/><i/><i/><div/><i/><i/></div>
+        <div className="resume-copy"><p className="eyebrow">06 / TAKE IT WITH YOU</p><h2>The short version,<br/><span>on paper.</span></h2><p>My experience, skills, projects,<br/>and research in one place.</p></div>
+        <div className="resume-actions"><a className="button primary" href={portfolio.resume} download="Hashan-Perera-Resume.pdf">Download résumé <span>↓</span></a><a className="text-link" href={portfolio.resume} target="_blank" rel="noreferrer">View résumé <span>↗</span></a><small>PDF · Hashan Perera</small></div>
+      </div></section>
+
+      <section className="section container contact-section" id="contact">
+        <p className="eyebrow">07 / WHAT’S NEXT?</p><h2>Good things start<br/>with a <em>conversation.</em></h2><p>Have a project in mind, an interesting opportunity,<br/>or just want to say hello? I’d love to hear from you.</p>
+        <a className="email-link" href={`mailto:${portfolio.email}`}>{portfolio.email} <span>↗</span></a>
+        <div className="contact-details"><span>{portfolio.location}</span><span aria-hidden="true">·</span><a href={`tel:${portfolio.phoneHref}`}>{portfolio.phone}</a></div>
+        <div className="social-links">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}</div>
+      </section>
+    </main>
+
+    <footer className="container footer"><a className="brand" href="#main" aria-label="Back to the top">{portfolio.initials}<span>.</span></a><p>© {new Date().getFullYear()} {portfolio.name}. Built with care.</p><a href="#main">Back to top ↑</a></footer>
+
+    <dialog ref={dialog} aria-labelledby="project-title" className="project-dialog" onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
+      <div><p className="eyebrow">{project.type}</p><h2 id="project-title">{project.name}</h2><div className="project-meta"><span>{project.role}</span><span>{project.outcome}</span></div><p>{project.detail}</p><ul>{project.highlights.map(point => <li key={point}>{point}</li>)}</ul><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>{project.url && <a className="project-external" href={project.url} target="_blank" rel="noreferrer">{project.linkLabel || 'Explore project'} ↗</a>}<form method="dialog"><button className="button primary">Close details ×</button></form></div>
+    </dialog>
   </>;
 }

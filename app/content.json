@@ -1,0 +1,337 @@
+{
+  "portfolio": {
+    "name": "Hashan Perera",
+    "initials": "hp",
+    "role": "Software Engineer",
+    "location": "Horana, Sri Lanka",
+    "email": "hashperera.v@gmail.com",
+    "phone": "+94 77 553 8374",
+    "phoneHref": "+94775538374",
+    "resume": "/resume.pdf",
+    "github": "",
+    "linkedin": "",
+    "summary": "Software engineer with 3+ years of experience building, supporting, and deploying production applications across .NET, Angular, React, NestJS, MongoDB, SQL Server, and AWS.",
+    "about": [
+      "I build software that connects thoughtful interfaces with dependable systems. Based in Horana, Sri Lanka, my work spans enterprise .NET applications, Angular and NestJS platforms, and mobile tools that work even when connectivity doesn’t.",
+      "Currently at IGT1 Lanka – Sitecore, I investigate production incidents, debug .NET applications, and deliver carefully validated fixes for global customers. Previously at DigitusTec, I led a three-engineer team and built full-stack business applications with SAP Business One integrations.",
+      "I care about clean architecture, secure APIs, and the details that make software reliable. I use AI-assisted tools for coding, debugging, refactoring, and testing, grounded in code review and engineering fundamentals."
+    ]
+  },
+  "skills": {
+    "Languages & foundations": [
+      "C#",
+      "JavaScript",
+      "TypeScript",
+      "OOP & SOLID",
+      "Design patterns",
+      "Data structures & algorithms"
+    ],
+    "Frontend & mobile": [
+      "Angular",
+      "React",
+      "Next.js",
+      "Flutter / GetX",
+      "React Native / Expo",
+      "Hive"
+    ],
+    "Backend & integration": [
+      "ASP.NET / .NET",
+      "NestJS",
+      "Express.js",
+      "REST APIs",
+      "GraphQL",
+      "WebSockets",
+      "SAP B1 Service Layer",
+      "Sitecore XP"
+    ],
+    "Data & security": [
+      "SQL Server",
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "JWT",
+      "Auth0",
+      "RBAC"
+    ],
+    "Cloud & delivery": [
+      "AWS EC2 / ECR / ECS",
+      "S3 / CloudWatch",
+      "Docker",
+      "GitHub / GitLab",
+      "GitHub Actions",
+      "CI/CD",
+      "Git branching"
+    ],
+    "Testing & quality": [
+      "xUnit",
+      "Jest",
+      "Jasmine / Karma",
+      "Postman",
+      "Swagger",
+      "SonarQube",
+      "Unit testing"
+    ],
+    "AI-assisted development": [
+      "GitHub Copilot",
+      "Claude Code",
+      "Cursor",
+      "Antigravity",
+      "Codex",
+      "LLM prompt design",
+      "Agentic development"
+    ],
+    "Research & working knowledge": [
+      "Python (working knowledge)",
+      "Java (working knowledge)",
+      "Machine learning",
+      "NLP / OCR",
+      "YOLO / VGG16",
+      "DeepFace / CNN",
+      "RabbitMQ"
+    ]
+  },
+  "experience": [
+    {
+      "role": "Software Engineer",
+      "company": "IGT1 Lanka – Sitecore",
+      "dates": "May 2026 – Present",
+      "current": true,
+      "summary": "Supporting production stability for enterprise Sitecore XP and .NET applications used by global customers.",
+      "highlights": [
+        "Investigate incidents across application code, .NET assemblies, SQL Server data, configuration, and runtime behavior.",
+        "Implement and validate code-level fixes with a focus on regression risk and production stability.",
+        "Work within structured engineering, troubleshooting, and customer communication practices."
+      ],
+      "tags": [
+        ".NET",
+        "Sitecore XP",
+        "SQL Server",
+        "Root-cause analysis"
+      ]
+    },
+    {
+      "role": "Software Engineer",
+      "company": "DigitusTec",
+      "dates": "July 2025 – April 2026",
+      "current": false,
+      "summary": "Delivered full-stack enterprise platforms across Angular, NestJS, MongoDB, and AWS.",
+      "highlights": [
+        "Led the Meeting Minutes platform for a three-engineer team, defining Angular architecture, project structure, CI/CD workflows, and code review practices.",
+        "Built meetings, tasks, and approvals modules; implemented Auth0 JWT authentication, RBAC, Docker deployment standards, and MongoDB query optimizations.",
+        "Delivered CRM workflows, contributed SAP B1 integrations for quality control, and built core CYOL agricultural management modules."
+      ],
+      "tags": [
+        "Angular",
+        "NestJS",
+        "MongoDB",
+        "AWS",
+        "SAP B1"
+      ]
+    },
+    {
+      "role": "Associate Software Engineer",
+      "company": "DigitusTec",
+      "dates": "January 2024 – June 2025",
+      "current": false,
+      "summary": "Built an offline-first mobile application for agricultural field teams in Zambia.",
+      "highlights": [
+        "Solely developed the Outgrower mobile app, enabling field access for 500+ users.",
+        "Used Flutter, GetX, and Hive for offline storage with queued synchronization and retry handling.",
+        "Developed the NestJS backend and integrated the SAP B1 Service Layer."
+      ],
+      "tags": [
+        "Flutter",
+        "GetX",
+        "Hive",
+        "NestJS",
+        "SAP B1"
+      ]
+    },
+    {
+      "role": "Trainee Software Engineer",
+      "company": "DigitusTec",
+      "dates": "June 2023 – December 2023",
+      "current": false,
+      "summary": "Began my professional software engineering journey at DigitusTec.",
+      "highlights": [],
+      "tags": []
+    }
+  ],
+  "projects": [
+    {
+      "name": "Meeting Minutes",
+      "type": "ENTERPRISE PLATFORM · DIGITUSTEC",
+      "description": "From meeting discussions to clear actions, tasks, and approvals. Led end-to-end delivery with a three-engineer team.",
+      "tags": [
+        "Angular",
+        "NestJS",
+        "MongoDB",
+        "Auth0",
+        "AWS"
+      ],
+      "color": "violet",
+      "visual": "meetings",
+      "label": "Meet. Decide. Follow through.",
+      "role": "Lead Developer",
+      "outcome": "Phase 1 production readiness",
+      "workflow": [
+        "Meetings",
+        "Tasks",
+        "Approvals"
+      ],
+      "detail": "Led the end-to-end development of the Meeting Minutes platform, defining the Angular architecture, project structure, and CI/CD workflows for a three-engineer team.",
+      "highlights": [
+        "Built responsive meetings, tasks, and approvals modules, with optimized rendering, filtering, and pagination for large data tables.",
+        "Architected the NestJS backend with role-based access control and Auth0 JWT authentication.",
+        "Established Docker deployment standards and improved MongoDB queries using aggregation pipelines and indexing."
+      ],
+      "url": "",
+      "linkLabel": ""
+    },
+    {
+      "name": "Outgrower",
+      "type": "OFFLINE-FIRST MOBILE · ZAMBIA",
+      "description": "A field-ready agricultural app with offline storage and reliable synchronization, enabling access for 500+ users.",
+      "tags": [
+        "Flutter",
+        "GetX",
+        "Hive",
+        "NestJS",
+        "SAP B1"
+      ],
+      "color": "green",
+      "visual": "mobile",
+      "label": "Built for the field.",
+      "role": "Sole Developer",
+      "outcome": "Field access for 500+ users",
+      "workflow": [
+        "Work offline",
+        "Queue changes",
+        "Sync safely"
+      ],
+      "detail": "Solely developed the Outgrower mobile application for a Zambian agricultural company to manage external farmers in low-connectivity environments.",
+      "highlights": [
+        "Created a responsive Flutter interface optimized for field usage, using GetX for state management.",
+        "Implemented Hive local storage and queued synchronization with retry handling.",
+        "Built a scalable NestJS backend and integrated it with the SAP B1 Service Layer."
+      ],
+      "url": "",
+      "linkLabel": ""
+    },
+    {
+      "name": "Patient Management",
+      "type": "HEALTHCARE · FREELANCE",
+      "description": "Digital medical record management for Colombo University, with secure data handling and a live deployment.",
+      "tags": [
+        "Next.js",
+        "MongoDB",
+        "Vercel"
+      ],
+      "color": "blue",
+      "visual": "records",
+      "label": "Records, thoughtfully connected.",
+      "role": "Developer",
+      "outcome": "Live system",
+      "workflow": [
+        "Digital records",
+        "Secure handling",
+        "Record management"
+      ],
+      "detail": "Developed a patient management system for Colombo University to manage digital medical records.",
+      "highlights": [
+        "Built digital record management features using Next.js and MongoDB.",
+        "Implemented secure data handling.",
+        "Deployed the live system on Vercel."
+      ],
+      "url": "",
+      "linkLabel": ""
+    },
+    {
+      "name": "InsureGeini",
+      "type": "AI RESEARCH · FINAL YEAR PROJECT",
+      "description": "An AI-powered insurance platform connecting damage detection, fraud analysis, sentiment, and policy matching.",
+      "tags": [
+        "Python",
+        "AI / ML",
+        "Microservices",
+        "AWS ECS",
+        "Docker"
+      ],
+      "color": "orange",
+      "visual": "research",
+      "label": "From incident to insight.",
+      "role": "Research Project Developer",
+      "outcome": "Grade A · NBQSA selected",
+      "workflow": [
+        "Damage detection",
+        "Fraud & sentiment",
+        "Policy mapping"
+      ],
+      "detail": "Developed an AI-powered insurance platform that automates claim processing by combining vehicle damage detection, fraud detection, customer sentiment analysis, and incident-to-policy mapping.",
+      "highlights": [
+        "Worked with AI, machine learning, NLP, OCR, YOLO, VGG16, DeepFace, and CNN technologies.",
+        "Used a microservices stack with Python, AWS ECS, Docker, CI/CD, GitHub, and RabbitMQ.",
+        "Final-year project awarded Grade A and selected for NBQSA, with peer-reviewed research on the system at ICECET 2025, Paris."
+      ],
+      "url": "",
+      "linkLabel": ""
+    }
+  ],
+  "otherProjects": [
+    {
+      "name": "CRM System",
+      "description": "Lead and customer management, sales pipelines, and cold-calling workflows. Built reusable Angular components and used Antigravity with SonarQube for implementation, refactoring, and quality validation.",
+      "stack": "Angular · NestJS · MongoDB · Auth0 · AWS",
+      "url": ""
+    },
+    {
+      "name": "Quality Control System",
+      "description": "Contributed SAP B1 ERP integrations for purchase orders, goods receipt notes, goods returns, production receipts, and inter-branch transfers in Zambia.",
+      "stack": "Angular · NestJS · MongoDB · SAP B1 · AWS",
+      "url": ""
+    },
+    {
+      "name": "CYOL",
+      "description": "Delivered Farmer, Farm, Expense, Outgrower, Loan, and Crop Management modules, including database design, data seeding, APIs, and end-to-end integration.",
+      "stack": "Angular · NestJS · MongoDB · AWS",
+      "url": "https://thecyol.com"
+    }
+  ],
+  "education": [
+    {
+      "title": "BSc (Hons) in Information Technology",
+      "subtitle": "Specializing in Software Engineering",
+      "institution": "Sri Lanka Institute of Information Technology (SLIIT), Malabe",
+      "dates": "2021 – 2025",
+      "result": "Second Class Upper"
+    },
+    {
+      "title": "G.C.E. Advanced Level",
+      "subtitle": "Physical Science",
+      "institution": "Taxila Central College, Horana",
+      "dates": "2020",
+      "result": "1B, 2C"
+    },
+    {
+      "title": "G.C.E. Ordinary Level",
+      "subtitle": "",
+      "institution": "Taxila Central College, Horana",
+      "dates": "2017",
+      "result": "9A"
+    }
+  ],
+  "publications": [
+    {
+      "title": "Leveraging Multi Modal AI Capabilities to Enhance Vehicle Insurance Claiming Process",
+      "venue": "5th International Conference on Electrical, Computer and Energy Technologies (ICECET), Paris",
+      "note": "2025 · Peer-reviewed InsureGeini system",
+      "url": ""
+    },
+    {
+      "title": "Cognitive Complexity Analysis and Optimization Tool for Java",
+      "venue": "ResearchGate",
+      "note": "Research publication",
+      "url": ""
+    }
+  ]
+}
