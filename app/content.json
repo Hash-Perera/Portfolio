@@ -94,6 +94,10 @@
     {
       "role": "Software Engineer",
       "company": "IGT1 Lanka – Sitecore",
+      "overviewPoints": [
+        "Investigate production incidents and identify root causes across Sitecore XP, .NET applications, and SQL Server.",
+        "Implement and validate code fixes to maintain stability for global enterprise customers."
+      ],
       "dates": "May 2026 – Present",
       "current": true,
       "summary": "Supporting production stability for enterprise Sitecore XP and .NET applications used by global customers.",
@@ -113,6 +117,10 @@
       "role": "Software Engineer",
       "company": "DigitusTec",
       "dates": "July 2025 – April 2026",
+      "overviewPoints": [
+        "Led a three-engineer team delivering the Meeting Minutes platform, owning Angular architecture, NestJS APIs, security, and CI/CD.",
+        "Built CRM and agricultural business modules, and contributed SAP B1 integrations for quality-control workflows."
+      ],
       "current": false,
       "summary": "Delivered full-stack enterprise platforms across Angular, NestJS, MongoDB, and AWS.",
       "highlights": [
@@ -132,6 +140,10 @@
       "role": "Associate Software Engineer",
       "company": "DigitusTec",
       "dates": "January 2024 – June 2025",
+      "overviewPoints": [
+        "Solely developed the offline-first Outgrower mobile app for agricultural teams in Zambia, enabling field access for 500+ users.",
+        "Built offline storage and synchronization with Flutter and Hive, plus a NestJS backend integrated with SAP B1."
+      ],
       "current": false,
       "summary": "Built an offline-first mobile application for agricultural field teams in Zambia.",
       "highlights": [
@@ -151,6 +163,9 @@
       "role": "Trainee Software Engineer",
       "company": "DigitusTec",
       "dates": "June 2023 – December 2023",
+      "overviewPoints": [
+        "Began my professional software engineering career at DigitusTec."
+      ],
       "current": false,
       "summary": "Began my professional software engineering journey at DigitusTec.",
       "highlights": [],

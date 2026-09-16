@@ -8,6 +8,18 @@ const navigation = [
   ['Skills', 'skills'], ['Résumé', 'resume'],
 ];
 
+// Preserve the CV's newest-first ordering while grouping career progression by employer.
+const companyExperience = [...new Set(experience.map(job => job.company))].map(company => {
+  const roles = experience.filter(job => job.company === company);
+  return {
+    company,
+    roles,
+    current: roles.some(job => job.current),
+    dates: `${roles[roles.length - 1].dates.split(' – ')[0]} – ${roles[0].dates.split(' – ')[1]}`,
+    monogram: company === 'DigitusTec' ? 'DT' : 'IG',
+  };
+});
+
 function ProjectVisual({ project }: { project: (typeof projects)[number] }) {
   return (
     <div className={`project-art ${project.color}`} aria-hidden="true">
@@ -84,10 +96,18 @@ export default function Home() {
 
       <section className="section container" id="experience">
         <div className="section-heading"><div><p className="eyebrow">02 / THE JOURNEY SO FAR</p><h2>Experience that <span>builds.</span></h2></div><p>From trainee to leading delivery,<br/>and keeping enterprise systems reliable.</p></div>
-        <div className="experience-list">{experience.map(job => <article className="experience-card" key={`${job.company}-${job.role}`}>
-          <div className="experience-date">{job.dates}{job.current && <span className="current-role"><span className="status-dot"/> Current role</span>}</div>
-          <div><h3>{job.role}</h3><p className="company">{job.company}</p><p>{job.summary}</p>{job.highlights.length > 0 && <ul>{job.highlights.map(point => <li key={point}>{point}</li>)}</ul>}{job.tags.length > 0 && <div className="tags experience-tags">{job.tags.map(tag => <span key={tag}>{tag}</span>)}</div>}</div>
-          <span className="experience-icon" aria-hidden="true">↗</span>
+        <div className="company-timeline">{companyExperience.map(company => <article className="company-history" key={company.company}>
+          <header className="company-heading">
+            <span className="company-monogram" aria-hidden="true">{company.monogram}</span>
+            <div className="company-identity"><h3>{company.company}</h3><p>{company.dates}<span aria-hidden="true"> · </span>{company.roles.length === 1 ? '1 role' : `${company.roles.length} roles`}</p></div>
+            {company.current && <span className="company-current"><span className="status-dot"/> Current</span>}
+          </header>
+          <ol className="role-timeline" aria-label={`Roles at ${company.company}, most recent first`}>
+            {company.roles.map(job => <li className={`timeline-role${job.current ? ' is-current' : ''}`} key={job.role}>
+              <div className="role-heading"><h4>{job.role}</h4><p className="role-dates">{job.dates}</p></div>
+              <ul className="role-points">{job.overviewPoints.map(point => <li key={point}>{point}</li>)}</ul>
+            </li>)}
+          </ol>
         </article>)}</div>
       </section>
 
