@@ -94,35 +94,37 @@
     {
       "role": "Software Engineer",
       "company": "IGT1 Lanka – Sitecore",
-      "overviewPoints": [
-        "Investigate production incidents and identify root causes across Sitecore XP, .NET applications, and SQL Server.",
-        "Implement and validate code fixes to maintain stability for global enterprise customers."
-      ],
       "dates": "May 2026 – Present",
       "current": true,
-      "summary": "Supporting production stability for enterprise Sitecore XP and .NET applications used by global customers.",
+      "summary": "I resolve production issues and deliver validated fixes for enterprise Sitecore XP and .NET applications used by global customers.",
       "highlights": [
         "Investigate incidents across application code, .NET assemblies, SQL Server data, configuration, and runtime behavior.",
         "Implement and validate code-level fixes with a focus on regression risk and production stability.",
         "Work within structured engineering, troubleshooting, and customer communication practices."
       ],
       "tags": [
-        ".NET",
         "Sitecore XP",
-        "SQL Server",
-        "Root-cause analysis"
+        ".NET",
+        "SQL Server"
+      ],
+      "responsibilityGroups": [
+        {
+          "title": "",
+          "technologies": [],
+          "points": [
+            "Investigate and resolve production incidents for enterprise Sitecore XP and .NET applications used by global customers, performing root-cause analysis across application code, .NET assemblies, SQL Server data, configuration, and runtime behavior.",
+            "Debug .NET-based applications and implement code level fixes for identified defects, validating changes carefully to minimize regression risk and maintain production stability.",
+            "Work within a large enterprise software environment, developing and validating solutions while following structured engineering, troubleshooting, and customer communication practices."
+          ]
+        }
       ]
     },
     {
       "role": "Software Engineer",
       "company": "DigitusTec",
       "dates": "July 2025 – April 2026",
-      "overviewPoints": [
-        "Led a three-engineer team delivering the Meeting Minutes platform, owning Angular architecture, NestJS APIs, security, and CI/CD.",
-        "Built CRM and agricultural business modules, and contributed SAP B1 integrations for quality-control workflows."
-      ],
       "current": false,
-      "summary": "Delivered full-stack enterprise platforms across Angular, NestJS, MongoDB, and AWS.",
+      "summary": "I led platform delivery and built full-stack meeting, CRM, quality-control, and agricultural systems with Angular, NestJS, and SAP B1 integrations.",
       "highlights": [
         "Led the Meeting Minutes platform for a three-engineer team, defining Angular architecture, project structure, CI/CD workflows, and code review practices.",
         "Built meetings, tasks, and approvals modules; implemented Auth0 JWT authentication, RBAC, Docker deployment standards, and MongoDB query optimizations.",
@@ -130,22 +132,86 @@
       ],
       "tags": [
         "Angular",
+        "TypeScript",
         "NestJS",
         "MongoDB",
+        "Docker",
+        "Auth0",
         "AWS",
-        "SAP B1"
+        "SonarQube",
+        "Antigravity",
+        "SAP B1",
+        "REST APIs",
+        "JWT",
+        "CI/CD"
+      ],
+      "responsibilityGroups": [
+        {
+          "title": "Meeting Minutes Platform",
+          "technologies": [
+            "Angular",
+            "NestJS",
+            "MongoDB",
+            "Docker",
+            "Auth0",
+            "AWS"
+          ],
+          "points": [
+            "Led the end-to-end development of the Meeting Minutes platform as Lead Developer, defining the Angular architecture, project structure, and CI/CD workflows for a 3-engineer team, while conducting regular code reviews to maintain code quality and consistency.",
+            "Designed and developed responsive Angular modules for meetings, tasks, and approvals, integrating REST APIs and optimizing large data tables (rendering, filtering, pagination), resulting in improved usability and performance at scale.",
+            "Architected the backend using NestJS, implementing a robust RBAC security model with Auth0 JWT authentication and Docker-based deployment standards, ensuring enterprise grade security and production readiness for the Phase 1 release.",
+            "Optimized MongoDB queries using aggregation pipelines and indexing strategies, significantly improving API response times and overall system performance."
+          ]
+        },
+        {
+          "title": "CRM System",
+          "technologies": [
+            "Angular",
+            "NestJS",
+            "MongoDB",
+            "Auth0",
+            "SonarQube",
+            "Antigravity",
+            "AWS"
+          ],
+          "points": [
+            "Developed key CRM modules including Lead Management, Customer Management, Sales Pipeline, and Cold Calling workflows using Angular and TypeScript, delivering responsive and reusable frontend components.",
+            "Adopted an AI-driven development approach using Antigravity alongside SonarQube, accelerating feature implementation, code refactoring, and quality validation while maintaining high code-quality standards."
+          ]
+        },
+        {
+          "title": "Quality Control System (Zambia)",
+          "technologies": [
+            "Angular",
+            "NestJS",
+            "MongoDB",
+            "AWS",
+            "SAP B1"
+          ],
+          "points": [
+            "Contributed to integrating the application with the SAP B1 ERP systems, Covered key workflows, including PO, GRN, Goods Returns, Production Receipts, and IBT."
+          ]
+        },
+        {
+          "title": "CYOL",
+          "technologies": [
+            "Angular",
+            "NestJS",
+            "MongoDB",
+            "AWS"
+          ],
+          "points": [
+            "Developed and delivered key business modules including Farmer, Farm, Expense, Outgrower, Loan, and Crop Management, handling full-stack implementation across Angular, NestJS, and MongoDB, including database design, data seeding, API development, and end-to-end feature integration."
+          ]
+        }
       ]
     },
     {
       "role": "Associate Software Engineer",
       "company": "DigitusTec",
       "dates": "January 2024 – June 2025",
-      "overviewPoints": [
-        "Solely developed the offline-first Outgrower mobile app for agricultural teams in Zambia, enabling field access for 500+ users.",
-        "Built offline storage and synchronization with Flutter and Hive, plus a NestJS backend integrated with SAP B1."
-      ],
       "current": false,
-      "summary": "Built an offline-first mobile application for agricultural field teams in Zambia.",
+      "summary": "I solely developed an offline-first agricultural app for 500+ users in Zambia, connecting Flutter field workflows to a NestJS backend and SAP B1.",
       "highlights": [
         "Solely developed the Outgrower mobile app, enabling field access for 500+ users.",
         "Used Flutter, GetX, and Hive for offline storage with queued synchronization and retry handling.",
@@ -154,22 +220,38 @@
       "tags": [
         "Flutter",
         "GetX",
-        "Hive",
         "NestJS",
+        "MongoDB",
+        "Hive DB",
         "SAP B1"
+      ],
+      "responsibilityGroups": [
+        {
+          "title": "OUTGROWER Mobile App (Zambia)",
+          "technologies": [
+            "Flutter",
+            "NestJS",
+            "MongoDB",
+            "Hive DB",
+            "SAP B1"
+          ],
+          "points": [
+            "Solely developed an offline first mobile application for a Zambian agricultural company to manage external farmers and enabling field access for 500+ users.",
+            "Implemented Flutter (GetX) for state management with Hive for local offline storage, including a queued synchronization mechanism with retry handling to support low-connectivity environments.",
+            "Developed a scalable NestJS backend and integrated with SAP B1 Service Layer. Responsive flutter UI and optimized for field usage."
+          ]
+        }
       ]
     },
     {
       "role": "Trainee Software Engineer",
       "company": "DigitusTec",
       "dates": "June 2023 – December 2023",
-      "overviewPoints": [
-        "Began my professional software engineering career at DigitusTec."
-      ],
       "current": false,
-      "summary": "Began my professional software engineering journey at DigitusTec.",
+      "summary": "I began my software engineering career as a trainee at DigitusTec.",
       "highlights": [],
-      "tags": []
+      "tags": [],
+      "responsibilityGroups": []
     }
   ],
   "projects": [

@@ -32,4 +32,23 @@
 .role-points{list-style:disc;padding-left:17px;margin:12px 0 0;max-width:770px;color:var(--muted);font-size:13px;line-height:1.85}.role-points li+li{margin-top:5px}.role-points li::marker{color:var(--muted);font-size:9px}
 @media(max-width:800px){.company-heading{gap:14px;flex-wrap:wrap;margin-bottom:25px}.company-monogram{width:44px;height:44px;font-size:14px}.company-identity h3{font-size:20px}.company-identity p{font-size:10px}.company-current{margin-left:58px;margin-top:-5px}.role-timeline{margin-left:21px}.timeline-role{padding-left:36px;padding-bottom:29px}.role-heading{display:block}.role-heading h4{font-size:16px}.role-dates{font-size:10px;margin-top:4px;white-space:normal}.role-points{font-size:12px;line-height:1.85}.company-history{padding-top:28px}}
 @media(max-width:380px){.company-identity h3{font-size:18px}.company-identity p>span{margin-inline:3px}.timeline-role{padding-left:26px}.role-heading h4{font-size:15px}.role-points{padding-left:14px}}
+.role-summary{font-size:13px;line-height:1.85;max-width:790px;margin:10px 0 13px}
+.role-technologies{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0;max-width:820px}
+.role-technologies li{font:10px/1.5 monospace;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:4px 8px}
+.role-details{margin-top:9px;max-width:850px}
+.role-details>summary{display:flex;align-items:center;gap:9px;list-style:none;cursor:pointer;width:fit-content;max-width:100%;min-height:44px;font-size:11px;font-weight:600;color:var(--blue);border-radius:3px}
+.role-details>summary::-webkit-details-marker{display:none}
+.role-details>summary::marker{content:''}
+.role-details>summary:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+.role-details>summary:hover{text-decoration:underline;text-underline-offset:4px}
+.details-chevron{display:inline-block;font-size:17px;line-height:1;transition:transform .2s}
+.role-details[open] .details-chevron{transform:rotate(180deg)}
+.role-details-content{padding:18px 22px 20px;margin-top:3px;background:var(--soft);border:1px solid var(--line);border-radius:7px}
+.responsibility-group+.responsibility-group{margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+.responsibility-group h5{margin:0;font-size:14px;line-height:1.5;font-weight:600;letter-spacing:-.2px}
+.responsibility-stack{font:10px/1.8 monospace;margin-top:5px;color:var(--muted)}
+.role-details .role-points{font-size:12px;line-height:1.85;margin-top:12px;max-width:none}
+.role-details .role-points li+li{margin-top:10px}
+.responsibility-group>ul:first-child{margin-top:0}
+@media(max-width:800px){.role-summary{font-size:12px}.role-technologies li{font-size:9px}.role-details-content{padding:16px}.role-details .role-points{font-size:12px}.responsibility-group h5{font-size:13px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}

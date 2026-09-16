@@ -105,7 +105,16 @@ export default function Home() {
           <ol className="role-timeline" aria-label={`Roles at ${company.company}, most recent first`}>
             {company.roles.map(job => <li className={`timeline-role${job.current ? ' is-current' : ''}`} key={job.role}>
               <div className="role-heading"><h4>{job.role}</h4><p className="role-dates">{job.dates}</p></div>
-              <ul className="role-points">{job.overviewPoints.map(point => <li key={point}>{point}</li>)}</ul>
+              <p className="role-summary">{job.summary}</p>
+              {job.tags.length > 0 && <ul className="role-technologies" aria-label={`Tools and technologies used as ${job.role} at ${job.company}`}>{job.tags.map(technology => <li key={technology}>{technology}</li>)}</ul>}
+              {job.responsibilityGroups.length > 0 && <details className="role-details">
+                <summary>Responsibilities and Achievements <span className="details-chevron" aria-hidden="true">⌄</span></summary>
+                <div className="role-details-content">{job.responsibilityGroups.map((group, index) => <div className="responsibility-group" key={group.title || index}>
+                  {group.title && <h5>{group.title}</h5>}
+                  {group.technologies.length > 0 && <p className="responsibility-stack">{group.technologies.join(' · ')}</p>}
+                  <ul className="role-points">{group.points.map(point => <li key={point}>{point}</li>)}</ul>
+                </div>)}</div>
+              </details>}
             </li>)}
           </ol>
         </article>)}</div>
