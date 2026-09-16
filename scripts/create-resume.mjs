@@ -1,0 +1,32 @@
+import PDFDocument from 'pdfkit';
+import { createWriteStream, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { createCanvas, DOMMatrix, ImageData, Path2D } from '@napi-rs/canvas';
+
+mkdirSync('tmp/pdfs', { recursive: true });
+const doc = new PDFDocument({size:'A4', margin:56, info:{Title:'Sample resume template - Your Name', Author:'Portfolio template'}});
+doc.registerFont('Helvetica','C:/Windows/Fonts/arial.ttf');
+doc.registerFont('Helvetica-Bold','C:/Windows/Fonts/arialbd.ttf');
+const stream = createWriteStream('public/resume.pdf');
+doc.pipe(stream);
+doc.font('Helvetica').fontSize(9).fillColor('#4265e8').text('SAMPLE TEMPLATE  /  REPLACE WITH YOUR OWN RESUME',56,55);
+doc.font('Helvetica-Bold').fontSize(34).fillColor('#24272b').text('Your Name',56,94);
+doc.font('Helvetica').fontSize(15).fillColor('#6f7379').text('Software Engineer | 3 years of experience',56,139);
+doc.fontSize(10).text('your.email@example.com | Your location | Your LinkedIn / GitHub',56,168);
+doc.moveTo(56,201).lineTo(539,201).strokeColor('#e5e6e2').stroke();
+function section(title, y, text) {doc.font('Helvetica-Bold').fontSize(10).fillColor('#4265e8').text(title,56,y);doc.font('Helvetica').fontSize(11).fillColor('#40454c').text(text,56,y+27,{width:475,lineGap:6});}
+section('PROFILE',228,'Software engineer with 3 years of experience. Replace this paragraph with a concise summary of your specialization, strengths, and the value you bring to a team.');
+section('EXPERIENCE',330,'Software Engineer - Your company\nEmployment dates | Location\n\n- Describe an important feature or product you delivered.\n- Explain a technical problem and how you solved it.\n- Include a measurable result where available.');
+section('SELECTED PROJECTS',503,'Project name | Your role | Technologies\nDescribe the problem, your contribution, and the outcome. Add a working demo or repository link.');
+section('SKILLS & EDUCATION',612,'List the technologies you use confidently.\nAdd your degree, institution, relevant training, or certifications.');
+doc.fontSize(9).fillColor('#6f7379').text('This is a sample template, not a completed professional resume.',56,765);
+doc.end();
+await new Promise((resolve,reject)=>{stream.on('finish',resolve);stream.on('error',reject);});
+Object.assign(globalThis,{DOMMatrix,ImageData,Path2D});
+const {getDocument} = await import('pdfjs-dist/legacy/build/pdf.mjs');
+const pdf = await getDocument({data:new Uint8Array(readFileSync('public/resume.pdf')),useSystemFonts:true}).promise;
+const page = await pdf.getPage(1);
+const viewport = page.getViewport({scale:1.5});
+const canvas = createCanvas(viewport.width,viewport.height);
+await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;
+writeFileSync('tmp/pdfs/resume-preview.png',canvas.toBuffer('image/png'));
+console.log(`Created and rendered ${pdf.numPages}-page resume template.`);
