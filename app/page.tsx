@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import Image from 'next/image';
 import { portfolio, projects, otherProjects, skills, experience, education, publications } from './portfolio';
 
 const navigation = [
@@ -16,7 +17,7 @@ const companyExperience = [...new Set(experience.map(job => job.company))].map(c
     roles,
     current: roles.some(job => job.current),
     dates: `${roles[roles.length - 1].dates.split(' – ')[0]} – ${roles[0].dates.split(' – ')[1]}`,
-    monogram: company === 'DigitusTec' ? 'DT' : 'IG',
+    logo: company === 'DigitusTec' ? '/companies/digitustec.jpg' : '/companies/igt1.jpg',
   };
 });
 
@@ -98,7 +99,7 @@ export default function Home() {
         <div className="section-heading"><div><p className="eyebrow">02 / THE JOURNEY SO FAR</p><h2>Experience that <span>builds.</span></h2></div><p>From trainee to leading delivery,<br/>and keeping enterprise systems reliable.</p></div>
         <div className="company-timeline">{companyExperience.map(company => <article className="company-history" key={company.company}>
           <header className="company-heading">
-            <span className="company-monogram" aria-hidden="true">{company.monogram}</span>
+            <Image className="company-logo" src={company.logo} alt={`${company.company} logo`} width={52} height={52} unoptimized />
             <div className="company-identity"><h3>{company.company}</h3><p>{company.dates}<span aria-hidden="true"> · </span>{company.roles.length === 1 ? '1 role' : `${company.roles.length} roles`}</p></div>
             {company.current && <span className="company-current"><span className="status-dot"/> Current</span>}
           </header>

@@ -18,6 +18,7 @@ Open http://127.0.0.1:3000.
 - Add the LinkedIn and GitHub profile URLs in `portfolio` when available. Social links appear once configured.
 - Project and publication URLs are optional. Only supplied URLs are shown; no repository links are inferred.
 - Project illustrations are workflow overviews, not screenshots of the original applications.
+- Company logos are local assets under `public/companies/`, matched to the supplied references using the official [IGT1](https://www.linkedin.com/company/igt-i-lanka) and [DigitusTec](https://www.linkedin.com/company/digitustec) profiles.
 - `public/resume.pdf` is a three-page résumé typeset from the supplied CV text. Both résumé buttons use this PDF.
 - Update `app/page.tsx` for presentation changes and `app/globals.css` for styling.
 - `app/layout.tsx` sets personalized search/social metadata. `NEXT_PUBLIC_SITE_URL` can override the trusted deployment origin.
