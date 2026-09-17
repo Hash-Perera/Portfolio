@@ -16,6 +16,7 @@ Open http://127.0.0.1:3000.
 `app/content.json` is the shared source for identity, contact information, skills, experience, projects, education, and publications. The portfolio is populated from Hashan's supplied CV. `app/portfolio.ts` exports this data for the website; the PDF generator reads the same file.
 
 - Add the LinkedIn and GitHub profile URLs in `portfolio` when available. Social links appear once configured.
+- To enable the prepared circular hero portrait, save the original photo as `public/hashan-perera.jpg` and set `portfolio.portrait` to `/hashan-perera.jpg`. Until the photo file is available, the existing code illustration remains visible. The portrait appears on the right on desktop and above the introduction on mobile.
 - Project and publication URLs are optional. Only supplied URLs are shown; no repository links are inferred.
 - Project illustrations are workflow overviews, not screenshots of the original applications.
 - Company logos are local assets under `public/companies/`, matched to the supplied references using the official [IGT1](https://www.linkedin.com/company/igt-i-lanka) and [DigitusTec](https://www.linkedin.com/company/digitustec) profiles.

@@ -76,14 +76,21 @@ export default function Home() {
           <div className="hero-foot"><span className="tiny-line"/> {portfolio.location} · Angular / React / .NET / NestJS / AWS</div>
           {(portfolio.github || portfolio.linkedin) && <div className="hero-socials">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}</div>}
         </div>
-        <div className="hero-art" aria-label="Decorative code card introducing Hashan">
+        {portfolio.portrait ? <figure className="hero-portrait">
+          <div className="portrait-surround">
+            <span className="portrait-orbit" aria-hidden="true"/>
+            <span className="portrait-orbit portrait-orbit-outer" aria-hidden="true"/>
+            <div className="portrait-frame"><Image src={portfolio.portrait} alt="Hashan Perera" width={1666} height={2082} priority unoptimized className="portrait-photo" /></div>
+          </div>
+          <figcaption>Software Engineer <span aria-hidden="true">·</span> Sri Lanka</figcaption>
+        </figure> : <div className="hero-art" aria-label="Decorative code card introducing Hashan">
           <div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/>
           <div className="floating-tag top-tag"><span className="status-dot"/> Built with intention</div>
           <div className="code-card"><div className="window-bar"><i/><i/><i/><span>hashan.ts</span><span>⌘</span></div>
             <div className="code-body"><p><span className="code-purple">const</span> developer = {'{'}</p><p className="indent">name: <span className="code-green">&apos;Hashan Perera&apos;</span>,</p><p className="indent">experience: <span className="code-green">&apos;3+ years&apos;</span>,</p><p className="indent">basedIn: <span className="code-green">&apos;Sri Lanka&apos;</span>,</p><p className="indent">focus: [</p><p className="double-indent code-green">&apos;Reliable systems&apos;,</p><p className="double-indent code-green">&apos;Real-world impact&apos;</p><p className="indent">],</p><p>{'}'};</p><p className="code-comment">{'// Always learning. Always building.'}</p></div>
           </div>
           <div className="floating-tag bottom-tag"><span className="spark">✳</span> Ideas → production-ready software</div><span className="art-plus">+</span>
-        </div>
+        </div>}
       </section>
 
       <div className="principles"><div className="container"><span>FROM IDEA TO IMPACT</span><p>Clean architecture <b>✳</b> Secure APIs <b>✳</b> Reliable systems <b>✳</b> Continuous learning</p></div></div>
