@@ -11,5 +11,5 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: `${portfolio.name} — Software Engineer`, description: portfolio.summary, images: [new URL('/og.png', origin).href] },
 };
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
-  return <html lang="en" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{__html: `try{document.documentElement.dataset.theme=localStorage.getItem('portfolio-theme')==='dark'?'dark':'light'}catch(e){}`}}/></head><body>{children}</body></html>;
+  return <html lang="en" data-theme="dark" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{__html: `try{document.documentElement.dataset.theme=localStorage.getItem('portfolio-theme-v2')==='light'?'light':'dark'}catch(e){}`}}/></head><body>{children}</body></html>;
 }

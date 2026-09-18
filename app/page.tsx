@@ -1,12 +1,12 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { portfolio, projects, otherProjects, skills, experience, education, publications } from './portfolio';
 
 const navigation = [
   ['About', 'about'], ['Experience', 'experience'], ['Projects', 'projects'],
-  ['Skills', 'skills'], ['Résumé', 'resume'],
+  ['Skills', 'skills'], ['Research', 'education'], ['Résumé', 'resume'],
 ];
 
 // Preserve the CV's newest-first ordering while grouping career progression by employer.
@@ -41,48 +41,101 @@ function ProjectVisual({ project }: { project: (typeof projects)[number] }) {
 
 export default function Home() {
   const [menu, setMenu] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const [selected, setSelected] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
+  const menuButton = useRef<HTMLButtonElement>(null);
   const project = projects[selected];
+
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
+    let frame = 0;
+    const updateActive = () => {
+      frame = 0;
+      let current = '';
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= 160) current = section.id;
+      }
+      setActiveSection(current);
+    };
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(updateActive); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    const elements = Array.from(document.querySelectorAll<HTMLElement>('.section-heading, .about-copy, .company-history, .project-card, .skill-group, .learning-grid, .resume-card'));
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    }, { threshold: 0.06, rootMargin: '0px 0px -24px 0px' });
+    if (!reducedMotion.matches) elements.forEach(element => {
+      if (element.getBoundingClientRect().top > window.innerHeight) {
+        element.classList.add('reveal-pending');
+        observer.observe(element);
+      }
+    });
+    const onMotionChange = () => { if (reducedMotion.matches) { elements.forEach(element => element.classList.add('is-visible')); observer.disconnect(); } };
+    reducedMotion.addEventListener('change', onMotionChange);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      observer.disconnect();
+      reducedMotion.removeEventListener('change', onMotionChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!menu) return;
+    const closeMenu = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setMenu(false); menuButton.current?.focus(); }
+    };
+    window.addEventListener('keydown', closeMenu);
+    return () => window.removeEventListener('keydown', closeMenu);
+  }, [menu]);
 
   function toggleTheme() {
     const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = theme;
-    try { localStorage.setItem('portfolio-theme', theme); } catch {}
+    try { localStorage.setItem('portfolio-theme-v2', theme); } catch {}
   }
 
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="header">
-      <a className="brand" href="#main" aria-label={`${portfolio.name}, home`}>{portfolio.initials}<span>.</span></a>
+      <a className="brand" href="#main" aria-label={`${portfolio.name}, home`}><span className="brand-bracket">&lt;</span>{portfolio.initials}<span className="brand-bracket"> /&gt;</span></a>
       <nav id="navigation" className={menu ? 'nav open' : 'nav'} aria-label="Main navigation">
-        {navigation.map(([name, id]) => <a key={id} href={`#${id}`} onClick={() => setMenu(false)}>{name}</a>)}
+        {navigation.map(([name, id]) => <a key={id} href={`#${id}`} aria-current={activeSection === id ? 'location' : undefined} onClick={() => setMenu(false)}>{name}</a>)}
       </nav>
       <div className="header-actions">
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle light or dark theme"><span className="moon" aria-hidden="true">☾</span><span className="sun" aria-hidden="true">☀</span></button>
         <a className="contact-link" href="#contact">Let’s talk ↗</a>
-        <button className="menu-toggle" aria-label="Toggle navigation" aria-controls="navigation" aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? '✕' : '☰'}</button>
+        <button ref={menuButton} className="menu-toggle" aria-label="Toggle navigation" aria-controls="navigation" aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? '✕' : '☰'}</button>
       </div>
     </header>
 
     <main id="main">
       <section className="hero container">
         <div className="hero-copy">
-          <div className="eyebrow"><span className="status-dot"/> SOFTWARE ENGINEER · 3+ YEARS OF EXPERIENCE</div>
-          <p className="intro">Hi there, I’m <strong>{portfolio.name}</strong> <span className="wave">↗</span></p>
-          <h1>Thoughtful code.<br/>Meaningful <em>experiences.</em></h1>
+          <div className="eyebrow"><span className="status-dot"/> SOFTWARE ENGINEER / SRI LANKA</div>
+          <h1>Hashan<br/><span className="gradient-text">Perera<span className="name-period">.</span></span></h1>
+          <p className="hero-lead">Thoughtful code.<br/>Meaningful experiences.</p>
           <p className="hero-description">From enterprise .NET systems to Angular and NestJS platforms,<br className="desktop-break"/> I build, support, and ship software people can rely on.</p>
           <div className="button-row"><a className="button primary" href="#projects">Explore my work <span>↗</span></a><a className="button secondary" href={portfolio.resume} download="Hashan-Perera-Resume.pdf">Download résumé <span>↓</span></a></div>
-          <div className="hero-foot"><span className="tiny-line"/> {portfolio.location} · Angular / React / .NET / NestJS / AWS</div>
+          <div className="hero-foot"><span className="tiny-line"/> FULL-STACK · CLOUD · AI-ASSISTED DEVELOPMENT</div>
           {(portfolio.github || portfolio.linkedin) && <div className="hero-socials">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}</div>}
         </div>
         {portfolio.portrait ? <figure className="hero-portrait">
+          <div className="portrait-label"><span>01 / THE ENGINEER</span><span className="portrait-cross" aria-hidden="true">+</span></div>
           <div className="portrait-surround">
             <span className="portrait-orbit" aria-hidden="true"/>
             <span className="portrait-orbit portrait-orbit-outer" aria-hidden="true"/>
             <div className="portrait-frame"><Image src={portfolio.portrait} alt="Hashan Perera" width={1666} height={2082} priority unoptimized className="portrait-photo" /></div>
           </div>
-          <figcaption>Software Engineer <span aria-hidden="true">·</span> Sri Lanka</figcaption>
+          <figcaption><span><strong>3+</strong> YEARS OF EXPERIENCE</span><span>BUILDING WITH<br/><b>Purpose & precision.</b></span></figcaption>
         </figure> : <div className="hero-art" aria-label="Decorative code card introducing Hashan">
           <div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/>
           <div className="floating-tag top-tag"><span className="status-dot"/> Built with intention</div>
@@ -93,7 +146,7 @@ export default function Home() {
         </div>}
       </section>
 
-      <div className="principles"><div className="container"><span>FROM IDEA TO IMPACT</span><p>Clean architecture <b>✳</b> Secure APIs <b>✳</b> Reliable systems <b>✳</b> Continuous learning</p></div></div>
+      <div className="principles"><div className="container"><span>THE ENGINEERING MINDSET</span><p>Clean architecture <b>/</b> Secure APIs <b>/</b> Reliable systems <b>/</b> Continuous learning</p></div></div>
 
       <section className="section container about" id="about">
         <div><p className="eyebrow">01 / A LITTLE ABOUT ME</p><h2>An engineer’s mind.<br/><span>A builder’s heart.</span></h2></div>
@@ -132,14 +185,14 @@ export default function Home() {
         <div className="section-heading"><div><p className="eyebrow">03 / SELECTED WORK</p><h2>Real challenges.<br/><span>Purposeful software.</span></h2></div><p>Enterprise platforms, tools for the field,<br/>and research that connects AI with real needs.</p></div>
         <div className="project-grid">{projects.map((item, index) => <article className="project-card" key={item.name}>
           <ProjectVisual project={item}/>
-          <div className="project-info"><p className="eyebrow">{item.type}</p><h3>{item.name}<button onClick={() => { setSelected(index); dialog.current?.showModal(); }} aria-label={`Read about ${item.name}`}>↗</button></h3><p>{item.description}</p><div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
+          <div className="project-info"><p className="eyebrow">{item.type}</p><h3>{item.name}<button onClick={() => { setSelected(index); dialog.current?.showModal(); }} aria-label={`Read about ${item.name}`}>↗</button></h3><p>{item.description}</p><div className="project-contribution"><span>{item.role}</span><span>{item.outcome}</span></div><div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>{item.url && <a className="project-external" href={item.url} target="_blank" rel="noreferrer">{item.linkLabel || 'Explore project'} ↗</a>}</div>
         </article>)}</div>
         <div className="more-work"><p className="eyebrow">ALSO BUILT AT DIGITUSTEC</p><div className="other-project-grid">{otherProjects.map(item => <article key={item.name}><h3>{item.name}</h3><p>{item.description}</p><small>{item.stack}</small>{item.url && <a className="project-external" href={item.url} target="_blank" rel="noreferrer">Visit CYOL ↗</a>}</article>)}</div></div>
       </div></section>
 
       <section className="section container" id="skills">
         <div className="section-heading"><div><p className="eyebrow">04 / MY TOOLKIT</p><h2>The tools behind <span>the work.</span></h2></div><p>Grounded in engineering fundamentals.<br/>Always making room to learn.</p></div>
-        <div className="skills-grid">{Object.entries(skills).map(([category, items], i) => <div className="skill-group" key={category}><span className="skill-number">0{i + 1}</span><h3>{category}</h3><div className="skill-items">{items.map(skill => <span key={skill}>{skill}</span>)}</div></div>)}</div>
+        <div className="skills-grid">{Object.entries(skills).map(([category, items], i) => <div className="skill-group" key={category}><div className="skill-top"><span className="skill-symbol" aria-hidden="true">{['{ }', '</>', '↔', '▤', '☁', '✓', '✳', 'λ'][i]}</span><span className="skill-number">0{i + 1}</span></div><h3>{category}</h3><div className="skill-items">{items.map(skill => <span key={skill}>{skill}</span>)}</div></div>)}</div>
       </section>
 
       <section className="section container learning-section" id="education">

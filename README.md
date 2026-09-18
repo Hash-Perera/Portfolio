@@ -1,6 +1,6 @@
 # Hashan Perera — Software Engineer
 
-A responsive Next.js App Router portfolio with TypeScript, a light default theme, a persistent dark-mode toggle, accessible project dialogs, and a downloadable résumé.
+A responsive Next.js App Router portfolio with TypeScript, a dark default theme, a persistent light-mode toggle, accessible project dialogs, and a downloadable résumé.
 
 ## Run locally
 
