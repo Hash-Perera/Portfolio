@@ -189,10 +189,11 @@ em { color: var(--accent); font-style: normal; }
 .about-stats strong span { color: var(--accent); }
 .about-stats small { display: block; color: var(--muted); font-size: 10px; line-height: 1.6; margin-top: 5px; }
 
-/* Company-grouped timeline and native disclosures */
-.company-timeline { display: grid; gap: 22px; }
-.company-history { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 30px 32px 0; }
-.company-heading { display: flex; align-items: center; gap: 18px; margin-bottom: 30px; }
+/* One shared experience surface with company-grouped timelines and native disclosures. */
+.experience-container { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 34px 36px 6px; }
+.company-history { min-width: 0; }
+.company-history + .company-history { border-top: 1px solid var(--line); margin-top: 34px; padding-top: 34px; }
+.company-heading { display: flex; align-items: center; gap: 18px; margin-bottom: 26px; }
 .company-logo { display: block; width: 52px; height: 52px; flex-shrink: 0; object-fit: contain; border-radius: 9px; }
 .company-identity { min-width: 0; }
 .company-identity h3 { font-size: 21px; }
@@ -394,7 +395,7 @@ em { color: var(--accent); font-style: normal; }
   .principles .container { flex-direction: column; gap: 12px; padding-block: 22px; text-align: center; }.principles p { font-size: 11px; }.principles b { margin-inline: 12px; }
   .section { padding-block: 76px; }.section-heading { gap: 25px; }.section-heading > p { max-width: 230px; font-size: 12px; }
   .about { grid-template-columns: 1fr; gap: 30px; }.about-copy .large-copy { font-size: 20px; }.about-stats { max-width: 560px; }
-  .company-history { padding: 25px 24px 0; }.role-heading { display: block; }.role-dates { margin-top: 4px; }
+  .experience-container { padding: 28px 26px 4px; }.role-heading { display: block; }.role-dates { margin-top: 4px; }
   .project-art { padding: 20px; height: 260px; }.project-overview { padding: 16px; }.project-overview h4 { font-size: 18px; }.overview-top > span:last-child { font-size: 6px; }.project-info { padding: 22px; }.project-info h3 { font-size: 23px; }.workflow-nodes { gap: 6px; }.workflow-nodes > div { padding: 10px 7px; }.workflow-nodes strong { font-size: 9px; }
   .other-project-grid { grid-template-columns: 1fr; }.learning-grid { gap: 20px; }.learning-grid > div { padding: 24px; }
   .resume-card { flex-wrap: wrap; gap: 28px; }.resume-copy { flex: 1; }.resume-actions { width: 100%; flex-shrink: 1; margin: 0; display: grid; grid-template-columns: 1fr 1fr; align-items: center; }.resume-actions small { grid-column: 1/-1; }
@@ -405,7 +406,7 @@ em { color: var(--accent); font-style: normal; }
   .principles p { line-height: 2.2; }.principles b { margin-inline: 6px; }.principles .container > span { font-size: 8px; }
   h2 { font-size: 35px; letter-spacing: -1.3px; }.section-heading { display: block; margin-bottom: 32px; }.section-heading > p { margin-top: 20px; max-width: none; }.eyebrow { font-size: 9px; letter-spacing: 1.5px; }
   .about-copy .large-copy { font-size: 18px; }.about-copy > p { font-size: 13px; }.about-stats { gap: 18px; }.about-stats strong { font-size: 29px; }.about-stats small { font-size: 9px; }
-  .company-history { padding: 22px 18px 0; }.company-heading { gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }.company-logo { width: 42px; height: 42px; }.company-identity h3 { font-size: 18px; }.company-identity p { font-size: 10px; }.company-identity p > span { margin-inline: 3px; }.company-current { margin-left: 54px; margin-top: -8px; font-size: 9px; }.role-timeline { margin-left: 20px; }.timeline-role { padding-left: 28px; padding-bottom: 28px; }.role-heading h4 { font-size: 15px; }.role-dates { font-size: 9px; white-space: normal; }.role-summary { font-size: 12px; }.role-technologies li { font-size: 9px; padding: 3px 7px; }.role-details > summary { font-size: 10px; gap: 6px; }.role-details-content { padding: 15px 12px; }.role-points { padding-left: 14px; font-size: 12px; }.responsibility-group h5 { font-size: 13px; }
+  .experience-container { padding: 24px 18px 2px; }.company-history + .company-history { margin-top: 28px; padding-top: 28px; }.company-heading { gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }.company-logo { width: 42px; height: 42px; }.company-identity h3 { font-size: 18px; }.company-identity p { font-size: 10px; }.company-identity p > span { margin-inline: 3px; }.company-current { margin-left: 54px; margin-top: -8px; font-size: 9px; }.role-timeline { margin-left: 20px; }.timeline-role { padding-left: 28px; padding-bottom: 28px; }.role-heading h4 { font-size: 15px; }.role-dates { font-size: 9px; white-space: normal; }.role-summary { font-size: 12px; }.role-technologies li { font-size: 9px; padding: 3px 7px; }.role-details > summary { font-size: 10px; gap: 6px; }.role-details-content { padding: 15px 12px; }.role-points { padding-left: 14px; font-size: 12px; }.responsibility-group h5 { font-size: 13px; }
   .project-grid { grid-template-columns: 1fr; gap: 23px; }.project-art { height: 282px; padding: 26px 22px; }.project-overview { padding: 19px; }.project-overview h4 { font-size: 21px; }.workflow-nodes > div { padding: 12px 9px; }.workflow-nodes strong { font-size: 10px; }.overview-top > span:last-child { font-size: 6px; }.project-info { padding: 25px; }.project-info > p:not(.eyebrow) { min-height: 0; }.project-contribution { font-size: 10px; }
   .skills-grid { gap: 12px; }.skill-group { padding: 18px 14px; }.skill-group h3 { font-size: 14px; min-height: 41px; }.skill-symbol { width: 32px; height: 32px; font-size: 15px; }.skill-items span { font-size: 9px; padding: 4px 6px; overflow-wrap: anywhere; }.skill-top { margin-bottom: 15px; }
   .learning-grid { grid-template-columns: 1fr; }.learning-grid > div { padding: 25px; }.education-item h4, .publication-item h4 { font-size: 16px; }

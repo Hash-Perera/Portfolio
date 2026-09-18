@@ -66,7 +66,7 @@ export default function Home() {
     onScroll();
 
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-    const elements = Array.from(document.querySelectorAll<HTMLElement>('.section-heading, .about-copy, .company-history, .project-card, .skill-group, .learning-grid, .resume-card'));
+    const elements = Array.from(document.querySelectorAll<HTMLElement>('.section-heading, .about-copy, .experience-container, .project-card, .skill-group, .learning-grid, .resume-card'));
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
@@ -184,7 +184,7 @@ export default function Home() {
 
       <section className="section container" id="experience">
         <div className="section-heading"><div><p className="eyebrow">02 / THE JOURNEY SO FAR</p><h2>Experience that <span>builds.</span></h2></div><p>From trainee to leading delivery,<br/>and keeping enterprise systems reliable.</p></div>
-        <div className="company-timeline">{companyExperience.map(company => <article className="company-history" key={company.company}>
+        <div className="experience-container">{companyExperience.map(company => <article className="company-history" key={company.company}>
           <header className="company-heading">
             <Image className="company-logo" src={company.logo} alt={`${company.company} logo`} width={52} height={52} unoptimized />
             <div className="company-identity"><h3>{company.company}</h3><p>{company.dates}<span aria-hidden="true"> · </span>{company.roles.length === 1 ? '1 role' : `${company.roles.length} roles`}</p></div>
