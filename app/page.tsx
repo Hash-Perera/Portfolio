@@ -8,6 +8,8 @@ const navigation = [
   ['About', 'about'], ['Experience', 'experience'], ['Projects', 'projects'],
   ['Skills', 'skills'], ['Research', 'education'], ['Résumé', 'resume'],
 ];
+const projectCategories = ['All', 'Web', 'Mobile', 'Research', 'AI'] as const;
+type ProjectCategory = (typeof projectCategories)[number];
 
 // Preserve the CV's newest-first ordering while grouping career progression by employer.
 const companyExperience = [...new Set(experience.map(job => job.company))].map(company => {
@@ -43,11 +45,15 @@ export default function Home() {
   const [menu, setMenu] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [selected, setSelected] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('All');
   const dialog = useRef<HTMLDialogElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
   const portrait = useRef<HTMLElement>(null);
   const portraitFrame = useRef<number>(0);
   const project = projects[selected];
+  const filteredProjects = projects
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => selectedCategory === 'All' || item.categories.includes(selectedCategory));
 
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
@@ -210,7 +216,10 @@ export default function Home() {
 
       <section className="section projects-section" id="projects"><div className="container">
         <div className="section-heading"><div><p className="eyebrow">03 / SELECTED WORK</p><h2>Real challenges.<br/><span>Purposeful software.</span></h2></div><p>Enterprise platforms, tools for the field,<br/>and research that connects AI with real needs.</p></div>
-        <div className="project-grid">{projects.map((item, index) => <article className="project-card" key={item.name}>
+        <div className="project-filters" role="toolbar" aria-label="Filter projects by category">
+          {projectCategories.map(category => <button type="button" key={category} aria-pressed={selectedCategory === category} onClick={() => setSelectedCategory(category)}>{category}</button>)}
+        </div>
+        <div className="project-grid" key={selectedCategory} data-filter={selectedCategory}>{filteredProjects.map(({ item, index }) => <article className="project-card" key={item.name}>
           <ProjectVisual project={item}/>
           <div className="project-info"><p className="eyebrow">{item.type}</p><h3>{item.name}<button onClick={() => { setSelected(index); dialog.current?.showModal(); }} aria-label={`Read about ${item.name}`}>↗</button></h3><p>{item.description}</p><div className="project-contribution"><span>{item.role}</span><span>{item.outcome}</span></div><div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>{item.url && <a className="project-external" href={item.url} target="_blank" rel="noreferrer">{item.linkLabel || 'Explore project'} ↗</a>}</div>
         </article>)}</div>

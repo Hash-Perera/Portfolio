@@ -231,7 +231,12 @@ em { color: var(--accent); font-style: normal; }
 /* Project cards and CSS workflow illustrations */
 .projects-section { background: linear-gradient(180deg, color-mix(in srgb, var(--indigo) 3%, var(--bg)), var(--bg)); }
 .projects-section > .container { width: min(100%, 1320px); }
+.project-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: -8px 0 26px; }
+.project-filters button { min-height: 40px; padding: 8px 15px; border: 1px solid var(--line); border-radius: 7px; background: color-mix(in srgb, var(--surface) 75%, transparent); color: var(--muted); font: 600 11px/1 var(--sans); transition: color .18s, border-color .18s, background .18s, transform .18s, box-shadow .18s; }
+.project-filters button:hover { color: var(--ink); border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); background: var(--soft); transform: translateY(-1px); }
+.project-filters button[aria-pressed='true'] { color: var(--accent-ink); border-color: var(--accent); background: var(--accent); box-shadow: 0 5px 18px color-mix(in srgb, var(--accent) 12%, transparent); }
 .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.project-grid[data-filter] .project-card { animation: project-filter-in .28s cubic-bezier(.22, .7, .25, 1); }
 .project-card { display: flex; flex-direction: column; min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .25s, border-color .25s, box-shadow .25s; }
 .project-card:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--accent) 42%, var(--line)); box-shadow: var(--shadow); }
 .project-art { --project-accent: var(--indigo); height: 224px; padding: 19px; display: flex; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--line); background: radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--project-accent) 10%, transparent), transparent 75%), var(--bg); }
@@ -269,6 +274,7 @@ em { color: var(--accent); font-style: normal; }
 .project-contribution { display: flex; flex-wrap: wrap; gap: 4px 12px; border-top: 1px solid var(--line); padding-top: 12px; margin-top: auto; margin-bottom: 14px; font-size: 9px; color: var(--muted); }
 .project-info .tags { gap: 5px; }
 .project-info .tags span { font-size: 9px; padding: 3px 6px; }
+@keyframes project-filter-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 .project-contribution span:first-child { color: var(--accent); font-weight: 600; }
 .more-work { margin-top: 48px; }
 .more-work > .eyebrow { color: var(--subtle); margin-bottom: 22px; }
@@ -413,6 +419,7 @@ em { color: var(--accent); font-style: normal; }
   .about-copy .large-copy { font-size: 18px; }.about-copy > p { font-size: 13px; }.about-stats { gap: 18px; }.about-stats strong { font-size: 29px; }.about-stats small { font-size: 9px; }
   .experience-container { padding: 24px 18px 2px; }.company-history + .company-history { margin-top: 28px; padding-top: 28px; }.company-heading { gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }.company-logo { width: 42px; height: 42px; }.company-identity h3 { font-size: 18px; }.company-identity p { font-size: 10px; }.company-identity p > span { margin-inline: 3px; }.company-current { margin-left: 54px; margin-top: -8px; font-size: 9px; }.role-timeline { margin-left: 20px; }.timeline-role { padding-left: 28px; padding-bottom: 28px; }.role-heading h4 { font-size: 15px; }.role-dates { font-size: 9px; white-space: normal; }.role-summary { font-size: 12px; }.role-technologies li { font-size: 9px; padding: 3px 7px; }.role-details > summary { font-size: 10px; gap: 6px; }.role-details-content { padding: 15px 12px; }.role-points { padding-left: 14px; font-size: 12px; }.responsibility-group h5 { font-size: 13px; }
   .project-grid { grid-template-columns: 1fr; gap: 23px; }.project-art { height: 282px; padding: 26px 22px; }.project-overview { padding: 19px; }.project-overview h4 { font-size: 21px; }.workflow-nodes > div { padding: 12px 9px; }.workflow-nodes strong { font-size: 10px; }.overview-top > span:last-child { font-size: 6px; }.project-info { padding: 25px; }.project-info > p:not(.eyebrow) { min-height: 0; }.project-contribution { font-size: 10px; }
+  .project-filters { gap: 7px; margin-bottom: 22px; }.project-filters button { min-height: 42px; padding-inline: 13px; font-size: 10px; }
   .skills-grid { gap: 12px; }.skill-group { padding: 18px 14px; }.skill-group h3 { font-size: 14px; min-height: 41px; }.skill-symbol { width: 32px; height: 32px; font-size: 15px; }.skill-items span { font-size: 9px; padding: 4px 6px; overflow-wrap: anywhere; }.skill-top { margin-bottom: 15px; }
   .learning-grid { grid-template-columns: 1fr; }.learning-grid > div { padding: 25px; }.education-item h4, .publication-item h4 { font-size: 16px; }
   .resume-section { padding-top: 60px; }.resume-card { padding: 26px; gap: 25px; }.document-art { width: 80px; height: 112px; padding: 14px; }.document-art > span { font-size: 20px; margin-bottom: 12px; }.document-art i { margin-top: 6px; }.document-art div { height: 4px; }.resume-copy .eyebrow { font-size: 8px; letter-spacing: 1px; }.resume-copy h2 { font-size: 28px; letter-spacing: -1px; }.resume-copy > p:last-child { font-size: 11px; }.resume-actions { display: flex; flex-direction: column; }.resume-actions .button { width: 100%; }

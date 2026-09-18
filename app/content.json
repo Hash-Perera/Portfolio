@@ -259,6 +259,7 @@
     {
       "name": "Meeting Minutes",
       "type": "ENTERPRISE PLATFORM · DIGITUSTEC",
+      "categories": ["Web"],
       "description": "From meeting discussions to clear actions, tasks, and approvals. Led end-to-end delivery with a three-engineer team.",
       "tags": [
         "Angular",
@@ -289,6 +290,7 @@
     {
       "name": "Outgrower",
       "type": "OFFLINE-FIRST MOBILE · ZAMBIA",
+      "categories": ["Mobile", "Web"],
       "description": "A field-ready agricultural app with offline storage and reliable synchronization, enabling access for 500+ users.",
       "tags": [
         "Flutter",
@@ -319,6 +321,7 @@
     {
       "name": "Patient Management",
       "type": "HEALTHCARE · FREELANCE",
+      "categories": ["Web"],
       "description": "Digital medical record management for Colombo University, with secure data handling and a live deployment.",
       "tags": [
         "Next.js",
@@ -347,6 +350,7 @@
     {
       "name": "InsureGeini",
       "type": "AI RESEARCH · FINAL YEAR PROJECT",
+      "categories": ["Research", "AI", "Web"],
       "description": "An AI-powered insurance platform connecting damage detection, fraud analysis, sentiment, and policy matching.",
       "tags": [
         "Python",
