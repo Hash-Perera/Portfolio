@@ -45,6 +45,8 @@ export default function Home() {
   const [selected, setSelected] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
+  const portrait = useRef<HTMLElement>(null);
+  const portraitFrame = useRef<number>(0);
   const project = projects[selected];
 
   useEffect(() => {
@@ -103,6 +105,27 @@ export default function Home() {
     try { localStorage.setItem('portfolio-theme-v2', theme); } catch {}
   }
 
+  function updatePortraitDepth(event: React.PointerEvent<HTMLElement>) {
+    if (event.pointerType !== 'mouse' || matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(max-width: 850px)').matches) return;
+    const element = portrait.current;
+    if (!element) return;
+    const bounds = element.getBoundingClientRect();
+    const x = Math.max(-1, Math.min(1, (event.clientX - (bounds.left + bounds.width / 2)) / (bounds.width / 2)));
+    const y = Math.max(-1, Math.min(1, (event.clientY - (bounds.top + bounds.height / 2)) / (bounds.height / 2)));
+    cancelAnimationFrame(portraitFrame.current);
+    portraitFrame.current = requestAnimationFrame(() => {
+      element.style.setProperty('--depth-x', x.toFixed(3));
+      element.style.setProperty('--depth-y', y.toFixed(3));
+    });
+  }
+
+  function resetPortraitDepth() {
+    const element = portrait.current;
+    if (!element) return;
+    element.style.setProperty('--depth-x', '0');
+    element.style.setProperty('--depth-y', '0');
+  }
+
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="header">
@@ -119,16 +142,20 @@ export default function Home() {
 
     <main id="main">
       <section className="hero container">
+        <div className="hero-nodes" aria-hidden="true">
+          <i><span>+</span></i><i><span>□</span></i><i><span>◇</span></i>
+          <i><span>&lt;&gt;</span></i><i><span>•</span></i><i><span>[ ]</span></i>
+        </div>
         <div className="hero-copy">
-          <div className="eyebrow"><span className="status-dot"/> SOFTWARE ENGINEER / SRI LANKA</div>
-          <h1>Hashan<br/><span className="gradient-text">Perera<span className="name-period">.</span></span></h1>
-          <p className="hero-lead">Thoughtful code.<br/>Meaningful experiences.</p>
-          <p className="hero-description">From enterprise .NET systems to Angular and NestJS platforms,<br className="desktop-break"/> I build, support, and ship software people can rely on.</p>
-          <div className="button-row"><a className="button primary" href="#projects">Explore my work <span>↗</span></a><a className="button secondary" href={portfolio.resume} download="Hashan-Perera-Resume.pdf">Download résumé <span>↓</span></a></div>
-          <div className="hero-foot"><span className="tiny-line"/> FULL-STACK · CLOUD · AI-ASSISTED DEVELOPMENT</div>
+          <div className="eyebrow hero-enter hero-enter-1"><span className="status-dot"/> SOFTWARE ENGINEER / SRI LANKA</div>
+          <h1><span className="hero-name hero-enter hero-enter-2">Hashan</span><br/><span className="hero-enter hero-enter-3"><span className="gradient-text">Perera<span className="name-period">.</span></span></span></h1>
+          <p className="hero-lead hero-enter hero-enter-4">Thoughtful code.<br/>Meaningful experiences.</p>
+          <p className="hero-description hero-enter hero-enter-5">From enterprise .NET systems to Angular and NestJS platforms,<br className="desktop-break"/> I build, support, and ship software people can rely on.</p>
+          <div className="button-row hero-enter hero-enter-6"><a className="button primary" href="#projects">Explore my work <span>↗</span></a><a className="button secondary" href={portfolio.resume} download="Hashan-Perera-Resume.pdf">Download résumé <span>↓</span></a></div>
+          <div className="hero-foot hero-enter hero-enter-7"><span className="tiny-line"/> FULL-STACK · CLOUD · AI-ASSISTED DEVELOPMENT</div>
           {(portfolio.github || portfolio.linkedin) && <div className="hero-socials">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}</div>}
         </div>
-        {portfolio.portrait ? <figure className="hero-portrait">
+        {portfolio.portrait ? <figure ref={portrait} className="hero-portrait hero-enter hero-enter-8" onPointerMove={updatePortraitDepth} onPointerLeave={resetPortraitDepth}>
           <div className="portrait-label"><span>01 / THE ENGINEER</span><span className="portrait-cross" aria-hidden="true">+</span></div>
           <div className="portrait-surround">
             <span className="portrait-orbit" aria-hidden="true"/>
