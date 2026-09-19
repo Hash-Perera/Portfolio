@@ -217,7 +217,7 @@ em { color: var(--accent); font-style: normal; }
 .role-details > summary::-webkit-details-marker { display: none; }
 .role-details > summary::marker { content: ''; }
 .role-details > summary:hover { text-decoration: underline; text-underline-offset: 4px; }
-.details-chevron { display: inline-block; font-size: 17px; line-height: 1; transition: transform .2s; }
+.details-chevron { display: block; width: 16px; height: 16px; flex: 0 0 16px; transition: transform .2s ease; }
 .role-details[open] .details-chevron { transform: rotate(180deg); }
 .role-details-content { padding: 20px 22px; margin-top: 4px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; }
 .responsibility-group + .responsibility-group { margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }

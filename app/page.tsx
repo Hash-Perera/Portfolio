@@ -202,7 +202,7 @@ export default function Home() {
               <p className="role-summary">{job.summary}</p>
               {job.tags.length > 0 && <ul className="role-technologies" aria-label={`Tools and technologies used as ${job.role} at ${job.company}`}>{job.tags.map(technology => <li key={technology}>{technology}</li>)}</ul>}
               {job.responsibilityGroups.length > 0 && <details className="role-details">
-                <summary>Responsibilities and Achievements <span className="details-chevron" aria-hidden="true">⌄</span></summary>
+                <summary>Responsibilities and Achievements <svg className="details-chevron" aria-hidden="true" viewBox="0 0 16 16" fill="none"><path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg></summary>
                 <div className="role-details-content">{job.responsibilityGroups.map((group, index) => <div className="responsibility-group" key={group.title || index}>
                   {group.title && <h5>{group.title}</h5>}
                   {group.technologies.length > 0 && <p className="responsibility-stack">{group.technologies.join(' · ')}</p>}
