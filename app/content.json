@@ -260,6 +260,10 @@
       "name": "Meeting Minutes",
       "type": "ENTERPRISE PLATFORM · DIGITUSTEC",
       "categories": ["Web"],
+      "problem": "Meeting decisions, action items, ownership, and approvals needed one reliable place for teams to track progress.",
+      "whatIDid": "Built a centralized platform for meetings, tasks, approvals, and follow-up actions.",
+      "architecture": ["Angular", "NestJS API", "MongoDB", "Auth0 / AWS"],
+      "roleDescription": "Led end-to-end delivery and frontend architecture for a three-engineer team.",
       "description": "From meeting discussions to clear actions, tasks, and approvals. Led end-to-end delivery with a three-engineer team.",
       "tags": [
         "Angular",
@@ -291,6 +295,10 @@
       "name": "Outgrower",
       "type": "OFFLINE-FIRST MOBILE · ZAMBIA",
       "categories": ["Mobile", "Web"],
+      "problem": "Field officers needed dependable access to agricultural workflows in areas with unreliable or unavailable connectivity.",
+      "whatIDid": "Built an offline-first field application with local storage, queued operations, retry handling, and safe synchronization.",
+      "architecture": ["Flutter / Hive", "NestJS API", "MongoDB", "SAP Business One"],
+      "roleDescription": "Owned the mobile application, backend, offline synchronization, and ERP integration.",
       "description": "A field-ready agricultural app with offline storage and reliable synchronization, enabling access for 500+ users.",
       "tags": [
         "Flutter",
@@ -322,6 +330,10 @@
       "name": "Patient Management",
       "type": "HEALTHCARE · FREELANCE",
       "categories": ["Web"],
+      "problem": "Colombo University needed a secure, centralized way to manage digital patient records.",
+      "whatIDid": "Built and deployed a patient-management system for creating and maintaining digital medical records.",
+      "architecture": ["Next.js", "Application API", "MongoDB", "Vercel"],
+      "roleDescription": "Implemented the application, secure data handling, and production deployment.",
       "description": "Digital medical record management for Colombo University, with secure data handling and a live deployment.",
       "tags": [
         "Next.js",
@@ -351,6 +363,10 @@
       "name": "InsureGeini",
       "type": "AI RESEARCH · FINAL YEAR PROJECT",
       "categories": ["Research", "AI", "Web"],
+      "problem": "Insurance claim processing required multiple manual checks across damage, fraud, sentiment, and policy validation.",
+      "whatIDid": "Built an AI-assisted platform that combines multiple analysis services to support automated claim processing.",
+      "architecture": ["Web Client", "Service APIs", "RabbitMQ", "AI Services / AWS"],
+      "roleDescription": "Developed the research system and its AI-assisted fraud-analysis capabilities.",
       "description": "An AI-powered insurance platform connecting damage detection, fraud analysis, sentiment, and policy matching.",
       "tags": [
         "Python",

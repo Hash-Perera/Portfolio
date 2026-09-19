@@ -255,7 +255,13 @@ export default function Home() {
     <footer className="container footer"><a className="brand" href="#main" aria-label="Back to the top">{portfolio.initials}<span>.</span></a><p>© {new Date().getFullYear()} {portfolio.name}. Built with care.</p><a href="#main">Back to top ↑</a></footer>
 
     <dialog ref={dialog} aria-labelledby="project-title" className="project-dialog" onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
-      <div><p className="eyebrow">{project.type}</p><h2 id="project-title">{project.name}</h2><div className="project-meta"><span>{project.role}</span><span>{project.outcome}</span></div><p>{project.detail}</p><ul>{project.highlights.map(point => <li key={point}>{point}</li>)}</ul><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>{project.url && <a className="project-external" href={project.url} target="_blank" rel="noreferrer">{project.linkLabel || 'Explore project'} ↗</a>}<form method="dialog"><button className="button primary">Close details ×</button></form></div>
+      <div><p className="eyebrow">{project.type}</p><h2 id="project-title">{project.name}</h2>
+        <div className="dialog-section"><h3>Problem</h3><p>{project.problem}</p></div>
+        <div className="dialog-section"><h3>What I Did</h3><p>{project.whatIDid}</p></div>
+        <div className="dialog-section"><h3>Architecture Overview</h3><div className="dialog-architecture">{project.architecture.map((node, index) => <span key={node}>{node}{index < project.architecture.length - 1 && <i aria-hidden="true">→</i>}</span>)}</div></div>
+        <div className="dialog-section dialog-role"><h3>Role</h3><strong>{project.role}</strong><p>{project.roleDescription}</p></div>
+        <div className="dialog-section"><h3>Technologies</h3><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
+        {project.url && <a className="project-external" href={project.url} target="_blank" rel="noreferrer">{project.linkLabel || 'Explore project'} ↗</a>}<form method="dialog"><button className="button primary">Close details ×</button></form></div>
     </dialog>
   </>;
 }

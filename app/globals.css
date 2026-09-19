@@ -355,6 +355,16 @@ em { color: var(--accent); font-style: normal; }
 .project-dialog ul { list-style: disc; padding-left: 19px; margin-bottom: 24px; font-size: 13px; color: var(--muted); }
 .project-dialog li + li { margin-top: 12px; }
 .project-dialog .tags { margin-bottom: 26px; }
+.dialog-section { padding-top: 19px; margin-top: 19px; border-top: 1px solid var(--line); }
+.dialog-section h3 { margin-bottom: 7px; color: var(--accent); font: 600 9px/1.5 var(--mono); letter-spacing: 1px; text-transform: uppercase; }
+.dialog-section p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+.dialog-architecture { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.dialog-architecture span { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--ink); font: 10px/1.4 var(--mono); }
+.dialog-architecture i { color: var(--accent); font-style: normal; }
+.dialog-role strong { display: block; color: var(--ink); font-size: 14px; }
+.dialog-role p { margin-top: 4px; }
+.project-dialog .dialog-section .tags { margin-bottom: 0; }
+.project-dialog form { margin-top: 28px; }
 
 /* Legacy no-photo fallback, still useful if the portrait is removed. */
 .hero-art { position: relative; min-width: 0; }
@@ -424,7 +434,7 @@ em { color: var(--accent); font-style: normal; }
   .learning-grid { grid-template-columns: 1fr; }.learning-grid > div { padding: 25px; }.education-item h4, .publication-item h4 { font-size: 16px; }
   .resume-section { padding-top: 60px; }.resume-card { padding: 26px; gap: 25px; }.document-art { width: 80px; height: 112px; padding: 14px; }.document-art > span { font-size: 20px; margin-bottom: 12px; }.document-art i { margin-top: 6px; }.document-art div { height: 4px; }.resume-copy .eyebrow { font-size: 8px; letter-spacing: 1px; }.resume-copy h2 { font-size: 28px; letter-spacing: -1px; }.resume-copy > p:last-child { font-size: 11px; }.resume-actions { display: flex; flex-direction: column; }.resume-actions .button { width: 100%; }
   .contact-section { padding-block: 85px 65px; }.contact-section h2 { font-size: clamp(35px, 8vw, 47px); letter-spacing: -1.5px; }.contact-section > p:not(.eyebrow) { font-size: 13px; }.email-link { font-size: clamp(16px, 4.6vw, 22px); gap: 12px; }.contact-details { gap: 9px; font-size: 11px; }.footer { flex-wrap: wrap; min-height: 115px; gap: 16px; padding-block: 26px; }.footer p { order: 3; width: 100%; font-size: 10px; }.footer > a:last-child { font-size: 10px; }
-  .project-dialog { padding: 25px; width: calc(100% - 30px); }.project-dialog h2 { font-size: 30px; }.project-dialog > div > p:not(.eyebrow), .project-dialog ul { font-size: 13px; }
+  .project-dialog { padding: 25px; width: calc(100% - 30px); }.project-dialog h2 { font-size: 30px; }.project-dialog > div > p:not(.eyebrow), .project-dialog ul { font-size: 13px; }.dialog-section p { font-size: 12px; }.dialog-architecture { gap: 6px; }.dialog-architecture span { font-size: 9px; padding-inline: 8px; }
   .hero::before { background-size: 48px 48px; opacity: .72; }
 }
 @media (max-width: 360px) {
