@@ -345,10 +345,17 @@ em { color: var(--accent); font-style: normal; }
 .footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 98px; border-top: 1px solid var(--line); }
 .footer p, .footer > a:last-child { font-size: 11px; color: var(--subtle); }
 .footer > a:last-child:hover { color: var(--accent); }
-.project-dialog { margin: auto; max-width: 660px; width: calc(100% - 40px); max-height: 85vh; overflow-y: auto; overscroll-behavior: contain; border: 1px solid var(--line); border-radius: 15px; background: var(--surface); color: var(--ink); padding: 36px; box-shadow: var(--shadow); }
+.project-dialog { margin: auto; max-width: 660px; width: calc(100% - 40px); max-height: 85vh; overflow: hidden auto; overscroll-behavior: contain; border: 1px solid var(--line); border-radius: 15px; background: var(--surface); background-clip: padding-box; color: var(--ink); padding: 36px; box-shadow: var(--shadow); scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--subtle) 58%, transparent) transparent; }
+.project-dialog::-webkit-scrollbar { width: 6px; }
+.project-dialog::-webkit-scrollbar-track { background: transparent; }
+.project-dialog::-webkit-scrollbar-thumb { min-height: 44px; border-radius: 999px; background: color-mix(in srgb, var(--subtle) 52%, transparent); }
+.project-dialog::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--muted) 78%, transparent); }
 .project-dialog::backdrop { background: #030811cc; backdrop-filter: blur(7px); }
+.dialog-close { position: sticky; top: 0; z-index: 3; float: right; display: grid; place-items: center; width: 36px; height: 36px; margin: 0 0 -36px 18px; border: 1px solid var(--line); border-radius: 8px; background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--muted); font: 400 22px/1 var(--sans); box-shadow: 0 5px 18px #00000012; backdrop-filter: blur(10px); transition: color .18s, border-color .18s, background .18s, transform .18s; }
+.dialog-close:hover { color: var(--ink); border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); background: var(--soft); transform: translateY(-1px); }
 .project-dialog h2 { margin: 17px 0 21px; font-size: 36px; }
 .project-dialog .eyebrow { font-size: 9px; }
+.project-dialog .dialog-subtitle { margin-top: -11px; color: var(--ink); font-size: 12px; font-weight: 650; }
 .project-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
 .project-meta span { background: var(--soft); border: 1px solid var(--line); color: var(--accent); padding: 5px 9px; border-radius: 4px; font-size: 10px; }
 .project-dialog > div > p:not(.eyebrow) { font-size: 14px; margin-bottom: 22px; }
@@ -357,14 +364,15 @@ em { color: var(--accent); font-style: normal; }
 .project-dialog .tags { margin-bottom: 26px; }
 .dialog-section { padding-top: 19px; margin-top: 19px; border-top: 1px solid var(--line); }
 .dialog-section h3 { margin-bottom: 7px; color: var(--accent); font: 600 9px/1.5 var(--mono); letter-spacing: 1px; text-transform: uppercase; }
-.dialog-section p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+.dialog-section p { color: var(--muted); font-size: 13px; line-height: 1.8; white-space: pre-line; }
+.architecture-lead { display: block; margin-bottom: 10px; color: var(--ink); font-size: 13px; }
 .dialog-architecture { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .dialog-architecture span { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--ink); font: 10px/1.4 var(--mono); }
 .dialog-architecture i { color: var(--accent); font-style: normal; }
+.architecture-description { margin-top: 12px; }
 .dialog-role strong { display: block; color: var(--ink); font-size: 14px; }
 .dialog-role p { margin-top: 4px; }
 .project-dialog .dialog-section .tags { margin-bottom: 0; }
-.project-dialog form { margin-top: 28px; }
 
 /* Legacy no-photo fallback, still useful if the portrait is removed. */
 .hero-art { position: relative; min-width: 0; }

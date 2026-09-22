@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { portfolio, projects, otherProjects, skills, experience, education, publications } from './portfolio';
+import { portfolio, projects, skills, experience, education, publications } from './portfolio';
 
 const navigation = [
   ['About', 'about'], ['Experience', 'experience'], ['Projects', 'projects'],
   ['Skills', 'skills'], ['Research', 'education'], ['Résumé', 'resume'],
 ];
-const projectCategories = ['All', 'Web', 'Mobile', 'Research', 'AI'] as const;
+const projectCategories = ['All', 'Web', 'Mobile', 'AI', 'Freelance', 'Personal', 'Research'] as const;
 type ProjectCategory = (typeof projectCategories)[number];
 
 // Preserve the CV's newest-first ordering while grouping career progression by employer.
@@ -51,6 +51,10 @@ export default function Home() {
   const portrait = useRef<HTMLElement>(null);
   const portraitFrame = useRef<number>(0);
   const project = projects[selected];
+  const projectTechnologies = 'detailTechnologies' in project && project.detailTechnologies ? project.detailTechnologies : project.tags;
+  const projectRole = 'detailRole' in project && project.detailRole ? project.detailRole : project.role;
+  const projectTitle = 'detailTitle' in project && project.detailTitle ? project.detailTitle : project.name;
+  const projectSubtitle = 'detailSubtitle' in project && project.detailSubtitle ? project.detailSubtitle : '';
   const filteredProjects = projects
     .map((item, index) => ({ item, index }))
     .filter(({ item }) => selectedCategory === 'All' || item.categories.includes(selectedCategory));
@@ -223,7 +227,6 @@ export default function Home() {
           <ProjectVisual project={item}/>
           <div className="project-info"><p className="eyebrow">{item.type}</p><h3>{item.name}<button onClick={() => { setSelected(index); dialog.current?.showModal(); }} aria-label={`Read about ${item.name}`}>↗</button></h3><p>{item.description}</p><div className="project-contribution"><span>{item.role}</span><span>{item.outcome}</span></div><div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>{item.url && <a className="project-external" href={item.url} target="_blank" rel="noreferrer">{item.linkLabel || 'Explore project'} ↗</a>}</div>
         </article>)}</div>
-        <div className="more-work"><p className="eyebrow">ALSO BUILT AT DIGITUSTEC</p><div className="other-project-grid">{otherProjects.map(item => <article key={item.name}><h3>{item.name}</h3><p>{item.description}</p><small>{item.stack}</small>{item.url && <a className="project-external" href={item.url} target="_blank" rel="noreferrer">Visit CYOL ↗</a>}</article>)}</div></div>
       </div></section>
 
       <section className="section container" id="skills">
@@ -255,13 +258,14 @@ export default function Home() {
     <footer className="container footer"><a className="brand" href="#main" aria-label="Back to the top">{portfolio.initials}<span>.</span></a><p>© {new Date().getFullYear()} {portfolio.name}. Built with care.</p><a href="#main">Back to top ↑</a></footer>
 
     <dialog ref={dialog} aria-labelledby="project-title" className="project-dialog" onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
-      <div><p className="eyebrow">{project.type}</p><h2 id="project-title">{project.name}</h2>
+      <button type="button" className="dialog-close" aria-label="Close project details" onClick={() => dialog.current?.close()}>×</button>
+      <div><p className="eyebrow">{project.type}</p><h2 id="project-title">{projectTitle}</h2>{projectSubtitle && <p className="dialog-subtitle">{projectSubtitle}</p>}
         <div className="dialog-section"><h3>Problem</h3><p>{project.problem}</p></div>
         <div className="dialog-section"><h3>What I Did</h3><p>{project.whatIDid}</p></div>
-        <div className="dialog-section"><h3>Architecture Overview</h3><div className="dialog-architecture">{project.architecture.map((node, index) => <span key={node}>{node}{index < project.architecture.length - 1 && <i aria-hidden="true">→</i>}</span>)}</div></div>
-        <div className="dialog-section dialog-role"><h3>Role</h3><strong>{project.role}</strong><p>{project.roleDescription}</p></div>
-        <div className="dialog-section"><h3>Technologies</h3><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
-        {project.url && <a className="project-external" href={project.url} target="_blank" rel="noreferrer">{project.linkLabel || 'Explore project'} ↗</a>}<form method="dialog"><button className="button primary">Close details ×</button></form></div>
+        <div className="dialog-section"><h3>Architecture Overview</h3>{project.architectureLead && <strong className="architecture-lead">{project.architectureLead}</strong>}<div className="dialog-architecture">{project.architecture.map((node, index) => <span key={node}>{node}{index < project.architecture.length - 1 && <i aria-hidden="true">→</i>}</span>)}</div>{project.architectureDescription && <p className="architecture-description">{project.architectureDescription}</p>}</div>
+        <div className="dialog-section dialog-role"><h3>Role</h3><strong>{projectRole}</strong><p>{project.roleDescription}</p></div>
+        <div className="dialog-section"><h3>Technologies</h3><div className="tags">{projectTechnologies.map(tag => <span key={tag}>{tag}</span>)}</div></div>
+        {project.url && <a className="project-external" href={project.url} target="_blank" rel="noreferrer">{project.linkLabel || 'Explore project'} ↗</a>}</div>
     </dialog>
   </>;
 }
