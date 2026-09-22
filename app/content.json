@@ -382,7 +382,7 @@
       "roleDescription": "Responsible for developing CRM modules, API integrations, reusable frontend components, and applying AI-assisted engineering practices for implementation, debugging, refactoring, and code-quality improvement.",
       "detailTechnologies": ["Angular", "NestJS", "MongoDB", "Auth0", "SonarQube", "Antigravity", "AWS"],
       "description": "Lead and customer management, sales pipelines, and cold-calling workflows built with reusable components and AI-assisted quality practices.",
-      "tags": ["Angular", "NestJS", "MongoDB", "Auth0", "SonarQube", "Antigravity", "AWS"],
+      "tags": ["Angular", "NestJS", "MongoDB", "Auth0", "SonarQube","AWS", "Antigravity" ],
       "color": "violet",
       "visual": "crm",
       "label": "From lead to customer, clearly managed.",
@@ -464,10 +464,10 @@
       "description": "An AI-powered insurance platform connecting damage detection, fraud analysis, sentiment, and policy matching.",
       "tags": [
         "Python",
+         "Docker",
+          "AWS",
         "AI / ML",
-        "Microservices",
-        "AWS ECS",
-        "Docker"
+        "Microservices"
       ],
       "color": "orange",
       "visual": "research",

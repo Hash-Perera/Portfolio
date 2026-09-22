@@ -212,6 +212,15 @@ em { color: var(--accent); font-style: normal; }
 .role-summary { font-size: 13px; line-height: 1.85; max-width: 790px; margin: 10px 0 14px; }
 .role-technologies, .tags, .skill-items { display: flex; flex-wrap: wrap; gap: 7px; list-style: none; padding: 0; margin: 0; }
 .role-technologies li, .tags span, .skill-items span { font: 10px/1.6 var(--mono); color: var(--muted); background: var(--soft); border: 1px solid var(--line); border-radius: 5px; padding: 4px 8px; }
+.technology-list { align-items: center; }
+.tags .technology-icon { position: relative; display: inline-grid; place-items: center; width: 30px; height: 30px; padding: 0; border-radius: 7px; color: var(--ink); background: color-mix(in srgb, var(--surface-raised) 70%, var(--soft)); transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+.technology-icon svg { width: 16px; height: 16px; }
+.tags .technology-icon:hover { z-index: 1; transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 48%, var(--line)); background: var(--surface-raised); }
+.tags .technology-icon:not(.technology-icon-labeled)::after { content: attr(data-label); position: absolute; z-index: 5; left: 50%; bottom: calc(100% + 7px); width: max-content; max-width: 180px; padding: 5px 7px; border: 1px solid var(--line); border-radius: 5px; background: var(--ink); color: var(--bg); box-shadow: 0 8px 22px #00000026; font: 9px/1.25 var(--mono); pointer-events: none; opacity: 0; transform: translate(-50%, 4px); transition: opacity .16s ease, transform .16s ease; }
+.tags .technology-icon:not(.technology-icon-labeled):is(:hover, :focus-visible)::after { opacity: 1; transform: translate(-50%, 0); }
+.tags .technology-icon:focus-visible { z-index: 2; outline: 2px solid var(--accent); outline-offset: 3px; }
+.tags .technology-icon-labeled { display: inline-flex; width: auto; min-height: 30px; padding: 4px 9px; gap: 6px; }
+.tags .technology-chip { color: var(--subtle); background: color-mix(in srgb, var(--soft) 55%, transparent); border-color: color-mix(in srgb, var(--line) 78%, transparent); }
 .role-details { margin-top: 10px; max-width: 850px; }
 .role-details > summary { display: flex; align-items: center; gap: 10px; list-style: none; cursor: pointer; width: fit-content; max-width: 100%; min-height: 44px; font-size: 11px; font-weight: 600; color: var(--accent); border-radius: 3px; }
 .role-details > summary::-webkit-details-marker { display: none; }

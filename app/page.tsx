@@ -5,12 +5,13 @@ import Image from 'next/image';
 import type { IconType } from 'react-icons';
 import {
   SiAngular, SiAuth0, SiClaude, SiCursor, SiDocker, SiDotnet, SiExpress,
-  SiExpo, SiFlutter, SiGithub, SiGithubactions, SiGithubcopilot, SiGitlab, SiGraphql,
-  SiHive, SiJasmine, SiJavascript, SiJest, SiJsonwebtokens, SiMongodb,
-  SiMysql, SiNestjs, SiNextdotjs, SiOpenjdk, SiPostgresql,
-  SiPostman, SiPython, SiRabbitmq, SiReact, SiSap, SiSharp, SiSitecore,
-  SiSocketdotio, SiSonarqubecloud, SiSwagger, SiTypescript,
+  SiExpo, SiFastapi, SiFlutter, SiGithub, SiGithubactions, SiGithubcopilot, SiGitlab, SiGraphql,
+  SiHive, SiJasmine, SiJavascript, SiJest, SiJsonwebtokens, SiMongodb, SiMongoose,
+  SiMysql, SiNestjs, SiNextdotjs, SiOpenjdk, SiPostgresql, SiPrisma,
+  SiPostman, SiPython, SiRabbitmq, SiReact, SiReactquery, SiSap, SiSharp, SiSitecore,
+  SiSocketdotio, SiSonarqubecloud, SiSwagger, SiTailwindcss, SiTypescript, SiVercel, SiYolo,
 } from 'react-icons/si';
+import { TbBrandOpenai } from 'react-icons/tb';
 import {
   FaAws, FaBrain, FaCloud, FaCode, FaCodeBranch, FaDatabase, FaDiagramProject,
   FaFileImage, FaFlask, FaKey, FaLayerGroup, FaPlug, FaRobot, FaShieldHalved,
@@ -66,6 +67,48 @@ const skillIcons: Record<string, SkillIconConfig> = {
   'Java (working knowledge)': { icon: SiOpenjdk, color: '#e76f00' },
   RabbitMQ: { icon: SiRabbitmq, color: '#ff6600' },
 };
+
+const projectTechnologyIcons: Record<string, SkillIconConfig> = {
+  'C#': { icon: SiSharp, color: '#512bd4' },
+  '.NET': { icon: SiDotnet, color: '#512bd4' },
+  Angular: { icon: SiAngular, color: '#dd0031' },
+  React: { icon: SiReact, color: '#149eca' },
+  'Next.js': { icon: SiNextdotjs },
+  TypeScript: { icon: SiTypescript, color: '#3178c6' },
+  Flutter: { icon: SiFlutter, color: '#0277bd' },
+  Hive: { icon: SiHive, color: '#e5a100' },
+  'Hive DB': { icon: SiHive, color: '#e5a100' },
+  NestJS: { icon: SiNestjs, color: '#e0234e' },
+  FastAPI: { icon: SiFastapi, color: '#009688' },
+  MongoDB: { icon: SiMongodb, color: '#47a248' },
+  Mongoose: { icon: SiMongoose, color: '#880000' },
+  Prisma: { icon: SiPrisma },
+  Auth0: { icon: SiAuth0, color: '#eb5424' },
+  JWT: { icon: SiJsonwebtokens, color: '#d43aff' },
+  AWS: { icon: FaAws, color: '#ff9900' },
+  Docker: { icon: SiDocker, color: '#2496ed' },
+  RabbitMQ: { icon: SiRabbitmq, color: '#ff6600' },
+  'SAP B1': { icon: SiSap, color: '#0874be' },
+  'SAP Business One': { icon: SiSap, color: '#0874be' },
+  SonarQube: { icon: SiSonarqubecloud, color: '#126ed3' },
+  Python: { icon: SiPython, color: '#3776ab' },
+  OpenAI: { icon: TbBrandOpenai, color: '#10a37f' },
+  'React Query': { icon: SiReactquery, color: '#ff4154' },
+  'Tailwind CSS': { icon: SiTailwindcss, color: '#06b6d4' },
+  Vercel: { icon: SiVercel },
+  YOLO: { icon: SiYolo, color: '#00ffff' },
+  'GitLab CI': { icon: SiGitlab, color: '#fc6d26' },
+  WebSockets: { icon: SiSocketdotio },
+};
+
+function TechnologyTags({ technologies, showLabels = false }: { technologies: readonly string[]; showLabels?: boolean }) {
+  return <div className="tags technology-list">{technologies.map(technology => {
+    const config = projectTechnologyIcons[technology];
+    if (!config) return <span className="technology-chip" key={technology}>{technology}</span>;
+    const TechnologyIcon = config.icon;
+    return <span className={`technology-icon${showLabels ? ' technology-icon-labeled' : ''}`} key={technology} role="img" aria-label={technology} data-label={showLabels ? undefined : technology} tabIndex={showLabels ? undefined : 0}><TechnologyIcon style={{ color: config.color }} aria-hidden="true" focusable="false"/>{showLabels && technology}</span>;
+  })}</div>;
+}
 
 function getSkillIcon(skill: string): SkillIconConfig {
   if (skillIcons[skill]) return skillIcons[skill];
@@ -306,7 +349,7 @@ export default function Home() {
         </div>
         <div className="project-grid" key={selectedCategory} data-filter={selectedCategory}>{filteredProjects.map(({ item, index }) => <article className="project-card" key={item.name}>
           <ProjectVisual project={item}/>
-          <div className="project-info"><p className="eyebrow">{item.type}</p><h3>{item.name}<button onClick={() => { setSelected(index); dialog.current?.showModal(); }} aria-label={`Read about ${item.name}`}>↗</button></h3><p>{item.description}</p><div className="project-contribution"><span>{item.role}</span><span>{item.outcome}</span></div><div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>{item.url && <a className="project-external" href={item.url} target="_blank" rel="noreferrer">{item.linkLabel || 'Explore project'} ↗</a>}</div>
+          <div className="project-info"><p className="eyebrow">{item.type}</p><h3>{item.name}<button onClick={() => { setSelected(index); dialog.current?.showModal(); }} aria-label={`Read about ${item.name}`}>↗</button></h3><p>{item.description}</p><div className="project-contribution"><span>{item.role}</span><span>{item.outcome}</span></div><TechnologyTags technologies={item.tags}/>{item.url && <a className="project-external" href={item.url} target="_blank" rel="noreferrer">{item.linkLabel || 'Explore project'} ↗</a>}</div>
         </article>)}</div>
       </div></section>
 
@@ -345,7 +388,7 @@ export default function Home() {
         <div className="dialog-section"><h3>What I Did</h3><p>{project.whatIDid}</p></div>
         <div className="dialog-section"><h3>Architecture Overview</h3>{project.architectureLead && <strong className="architecture-lead">{project.architectureLead}</strong>}<div className="dialog-architecture">{project.architecture.map((node, index) => <span key={node}>{node}{index < project.architecture.length - 1 && <i aria-hidden="true">→</i>}</span>)}</div>{project.architectureDescription && <p className="architecture-description">{project.architectureDescription}</p>}</div>
         <div className="dialog-section dialog-role"><h3>Role</h3><strong>{projectRole}</strong><p>{project.roleDescription}</p></div>
-        <div className="dialog-section"><h3>Technologies</h3><div className="tags">{projectTechnologies.map(tag => <span key={tag}>{tag}</span>)}</div></div>
+        <div className="dialog-section"><h3>Technologies</h3><TechnologyTags technologies={projectTechnologies} showLabels/></div>
         {project.url && <a className="project-external" href={project.url} target="_blank" rel="noreferrer">{project.linkLabel || 'Explore project'} ↗</a>}</div>
     </dialog>
   </>;
