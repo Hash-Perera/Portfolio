@@ -2,6 +2,20 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import type { IconType } from 'react-icons';
+import {
+  SiAngular, SiAuth0, SiClaude, SiCursor, SiDocker, SiDotnet, SiExpress,
+  SiFlutter, SiGithub, SiGithubactions, SiGithubcopilot, SiGraphql,
+  SiHive, SiJasmine, SiJavascript, SiJest, SiJsonwebtokens, SiMongodb,
+  SiMysql, SiNestjs, SiNextdotjs, SiOpenjdk, SiPostgresql,
+  SiPostman, SiPython, SiRabbitmq, SiReact, SiSap, SiSharp, SiSitecore,
+  SiSocketdotio, SiSonarqubecloud, SiSwagger, SiTypescript,
+} from 'react-icons/si';
+import {
+  FaAws, FaBrain, FaCloud, FaCode, FaCodeBranch, FaDatabase, FaDiagramProject,
+  FaFileImage, FaFlask, FaKey, FaLayerGroup, FaPlug, FaRobot, FaShieldHalved,
+  FaWandMagicSparkles,
+} from 'react-icons/fa6';
 import { portfolio, projects, skills, experience, education, publications } from './portfolio';
 
 const navigation = [
@@ -10,6 +24,70 @@ const navigation = [
 ];
 const projectCategories = ['All', 'Web', 'Mobile', 'AI', 'Freelance', 'Personal', 'Research'] as const;
 type ProjectCategory = (typeof projectCategories)[number];
+
+type SkillIconConfig = { icon: IconType; color?: string };
+
+const skillIcons: Record<string, SkillIconConfig> = {
+  'C#': { icon: SiSharp, color: '#512bd4' },
+  JavaScript: { icon: SiJavascript, color: '#c89b00' },
+  TypeScript: { icon: SiTypescript, color: '#3178c6' },
+  Angular: { icon: SiAngular, color: '#dd0031' },
+  React: { icon: SiReact, color: '#149eca' },
+  'Next.js': { icon: SiNextdotjs },
+  Flutter: { icon: SiFlutter, color: '#0277bd' },
+  Hive: { icon: SiHive, color: '#e5a100' },
+  '.NET': { icon: SiDotnet, color: '#512bd4' },
+  NestJS: { icon: SiNestjs, color: '#e0234e' },
+  'Express.js': { icon: SiExpress },
+  GraphQL: { icon: SiGraphql, color: '#e10098' },
+  WebSockets: { icon: SiSocketdotio },
+  'SAP B1 Service Layer': { icon: SiSap, color: '#0874be' },
+  'Sitecore XP': { icon: SiSitecore, color: '#eb1f1f' },
+  MySQL: { icon: SiMysql, color: '#4479a1' },
+  PostgreSQL: { icon: SiPostgresql, color: '#4169e1' },
+  MongoDB: { icon: SiMongodb, color: '#47a248' },
+  JWT: { icon: SiJsonwebtokens, color: '#d43aff' },
+  Auth0: { icon: SiAuth0, color: '#eb5424' },
+  Docker: { icon: SiDocker, color: '#2496ed' },
+  'GitHub / GitLab': { icon: SiGithub },
+  'GitHub Actions': { icon: SiGithubactions, color: '#2088ff' },
+  Jest: { icon: SiJest, color: '#c21325' },
+  'Jasmine / Karma': { icon: SiJasmine, color: '#8a4182' },
+  Postman: { icon: SiPostman, color: '#ff6c37' },
+  Swagger: { icon: SiSwagger, color: '#75bd36' },
+  SonarQube: { icon: SiSonarqubecloud, color: '#126ed3' },
+  'GitHub Copilot': { icon: SiGithubcopilot },
+  'Claude Code': { icon: SiClaude, color: '#d97757' },
+  Cursor: { icon: SiCursor },
+  Codex: { icon: FaRobot, color: '#10a37f' },
+  'Python (working knowledge)': { icon: SiPython, color: '#3776ab' },
+  'Java (working knowledge)': { icon: SiOpenjdk, color: '#e76f00' },
+  RabbitMQ: { icon: SiRabbitmq, color: '#ff6600' },
+};
+
+function getSkillIcon(skill: string): SkillIconConfig {
+  if (skillIcons[skill]) return skillIcons[skill];
+  if (skill.startsWith('Flutter')) return { icon: SiFlutter, color: '#0277bd' };
+  if (skill.startsWith('React Native')) return { icon: SiReact, color: '#149eca' };
+  if (skill.startsWith('ASP.NET')) return { icon: SiDotnet, color: '#512bd4' };
+  if (skill.startsWith('AWS') || skill.startsWith('S3')) return { icon: FaAws, color: '#ff9900' };
+  if (skill.startsWith('SQL')) return { icon: FaDatabase, color: '#4d86b8' };
+  if (skill.includes('Git branching')) return { icon: FaCodeBranch, color: '#e05d44' };
+  if (skill.includes('CI/CD')) return { icon: FaDiagramProject, color: '#6b7fd7' };
+  if (skill.includes('RBAC')) return { icon: FaShieldHalved, color: '#3d8f72' };
+  if (skill.includes('REST')) return { icon: FaPlug, color: '#6750a4' };
+  if (skill.includes('testing') || skill === 'xUnit') return { icon: FaFlask, color: '#6d63b5' };
+  if (skill.includes('Machine learning')) return { icon: FaBrain, color: '#af52de' };
+  if (skill.includes('NLP') || skill.includes('OCR')) return { icon: FaFileImage, color: '#d26478' };
+  if (skill.includes('YOLO') || skill.includes('DeepFace')) return { icon: FaBrain, color: '#af52de' };
+  if (skill.includes('prompt')) return { icon: FaWandMagicSparkles, color: '#8b5cf6' };
+  if (skill.includes('Agentic')) return { icon: FaRobot, color: '#477b8d' };
+  if (skill.includes('patterns') || skill.includes('SOLID')) return { icon: FaLayerGroup, color: '#5470c6' };
+  if (skill.includes('structures')) return { icon: FaCode, color: '#4f7a92' };
+  if (skill.includes('security')) return { icon: FaKey, color: '#b07818' };
+  if (skill.includes('Cloud')) return { icon: FaCloud, color: '#4d86b8' };
+  return { icon: FaCode, color: '#667085' };
+}
 
 // Preserve the CV's newest-first ordering while grouping career progression by employer.
 const companyExperience = [...new Set(experience.map(job => job.company))].map(company => {
@@ -231,7 +309,7 @@ export default function Home() {
 
       <section className="section container" id="skills">
         <div className="section-heading"><div><p className="eyebrow">04 / MY TOOLKIT</p><h2>The tools behind <span>the work.</span></h2></div><p>Grounded in engineering fundamentals.<br/>Always making room to learn.</p></div>
-        <div className="skills-grid">{Object.entries(skills).map(([category, items], i) => <div className="skill-group" key={category}><div className="skill-top"><span className="skill-symbol" aria-hidden="true">{['{ }', '</>', '↔', '▤', '☁', '✓', '✳', 'λ'][i]}</span><span className="skill-number">0{i + 1}</span></div><h3>{category}</h3><div className="skill-items">{items.map(skill => <span key={skill}>{skill}</span>)}</div></div>)}</div>
+        <div className="skills-grid">{Object.entries(skills).map(([category, items], i) => <div className="skill-group" key={category}><div className="skill-top"><span className="skill-symbol" aria-hidden="true">{['{ }', '</>', '↔', '▤', '☁', '✓', '✳', 'λ'][i]}</span><span className="skill-number">0{i + 1}</span></div><h3>{category}</h3><div className="skill-items">{items.map(skill => { const config = getSkillIcon(skill); const SkillIcon = config.icon; return <span key={skill}><SkillIcon className="skill-item-icon" style={{ color: config.color }} aria-hidden="true" focusable="false"/>{skill}</span>; })}</div></div>)}</div>
       </section>
 
       <section className="section container learning-section" id="education">

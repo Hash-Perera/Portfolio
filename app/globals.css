@@ -295,7 +295,8 @@ em { color: var(--accent); font-style: normal; }
 .skill-number { font: 9px var(--mono); color: var(--subtle); }
 .skill-group h3 { font-size: 16px; letter-spacing: -.2px; line-height: 1.45; margin-bottom: 19px; min-height: 46px; }
 .skill-items { gap: 7px 5px; }
-.skill-items span { font-size: 9px; transition: color .2s, border-color .2s; }
+.skill-items span { display: inline-flex; align-items: center; gap: 6px; font-size: 9px; transition: color .2s, border-color .2s; }
+.skill-item-icon { flex: 0 0 auto; width: 15px; height: 15px; }
 .skill-items span:hover { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
 
 /* Education, research and resume */
