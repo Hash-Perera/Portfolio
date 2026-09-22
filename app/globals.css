@@ -287,10 +287,13 @@ em { color: var(--accent); font-style: normal; }
 .project-external:hover { text-decoration: underline; text-underline-offset: 5px; }
 
 /* Skills */
-.skills-board { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1px; overflow: hidden; padding: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
-.skill-cell { position: relative; min-width: 0; grid-column: span 3; padding: 19px 18px 20px; background: var(--surface); transition: background .2s, transform .2s, box-shadow .2s; }
+.skills-board { isolation: isolate; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1px; overflow: visible; padding: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+.skill-cell { position: relative; min-width: 0; grid-column: span 3; padding: 19px 18px 20px; background: var(--surface); transform-origin: center; will-change: transform; transition: transform .32s cubic-bezier(.16,1,.3,1), filter .24s ease, opacity .24s ease; }
+.skill-cell::before { content: ''; position: absolute; z-index: 0; inset: 0; pointer-events: none; border-radius: 5px; background: var(--surface); box-shadow: inset 0 0 0 1px transparent, 0 0 0 transparent; transition: inset .32s cubic-bezier(.16,1,.3,1), background .24s ease, box-shadow .32s ease; }
+.skill-cell > * { position: relative; z-index: 1; }
 .skill-cell-3 { grid-column: span 6; }.skill-cell-5 { grid-column: span 5; }.skill-cell-6 { grid-column: span 4; }.skill-cell-8 { grid-column: span 6; }.skill-cell-10 { grid-column: span 3; }.skill-cell-11 { grid-column: span 4; }.skill-cell-12 { grid-column: span 5; }
-.skill-cell:hover { z-index: 1; background: color-mix(in srgb, var(--surface-raised) 72%, var(--surface)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, var(--line)); transform: translateY(-2px); }
+.skill-cell:hover { z-index: 5; transform: translateY(-8px); }
+.skill-cell:hover::before { inset: -7px; background: color-mix(in srgb, var(--surface-raised) 82%, var(--surface)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 68%, var(--line)), 0 24px 52px #00000052; }
 .skill-top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; margin-bottom: 12px; }
 .skill-symbol { display: grid; place-items: center; width: 31px; height: 31px; color: var(--accent); border: 1px solid var(--line); background: var(--soft); border-radius: 6px; font: 14px var(--mono); transition: border-color .2s, background .2s; }
 .skill-number { font: 9px var(--mono); color: var(--subtle); }
@@ -300,6 +303,10 @@ em { color: var(--accent); font-style: normal; }
 .skill-items span { display: inline-flex; align-items: center; gap: 5px; padding: 3px 7px; font-size: 8px; transition: color .2s, border-color .2s, background .2s, transform .2s; }
 .skill-item-icon { flex: 0 0 auto; width: 13px; height: 13px; opacity: .86; transition: opacity .2s; }
 .skill-items span:hover { color: var(--accent); background: var(--surface-raised); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); transform: translateY(-1px); }.skill-items span:hover .skill-item-icon { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .skills-board:has(.skill-cell:hover) .skill-cell:not(:hover) { filter: blur(1.5px); opacity: .46; }
+  .skills-board:has(.skill-cell:hover) .skill-cell:hover { filter: none; opacity: 1; transition: transform .32s cubic-bezier(.16,1,.3,1), filter 0s, opacity .1s ease; }
+}
 
 /* Education, research and resume */
 .learning-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
@@ -389,11 +396,12 @@ em { color: var(--accent); font-style: normal; }
 /* Motion is progressive enhancement: content remains visible without JavaScript. */
 .reveal-pending { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease, border-color .2s, box-shadow .2s; }
 .reveal-pending.is-visible { opacity: 1; transform: none; }
+.skill-cell.reveal-pending { transition: opacity .5s ease, transform .32s cubic-bezier(.16,1,.3,1), filter .24s ease; }
 .project-card:nth-child(2n).reveal-pending { transition-delay: .07s; }
 .skill-cell:nth-child(2n).reveal-pending { transition-delay: .04s; }
 .skill-cell:nth-child(3n).reveal-pending { transition-delay: .08s; }
 .reveal-pending.is-visible:hover.project-card { transform: translateY(-5px); }
-.reveal-pending.is-visible:hover.skill-cell { transform: translateY(-2px); }
+.reveal-pending.is-visible:hover.skill-cell { transform: translateY(-8px); }
 
 @media (min-width: 1500px) { .hero { min-height: 800px; } }
 @media (max-width: 1199px) { .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
