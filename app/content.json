@@ -19,77 +19,18 @@
     ]
   },
   "skills": {
-    "Languages & foundations": [
-      "C#",
-      "JavaScript",
-      "TypeScript",
-      "OOP & SOLID",
-      "Design patterns",
-      "Data structures & algorithms"
-    ],
-    "Frontend & mobile": [
-      "Angular",
-      "React",
-      "Next.js",
-      "Flutter / GetX",
-      "React Native / Expo",
-      "Hive"
-    ],
-    "Backend & integration": [
-      "ASP.NET / .NET",
-      "NestJS",
-      "Express.js",
-      "REST APIs",
-      "GraphQL",
-      "WebSockets",
-      "SAP B1 Service Layer",
-      "Sitecore XP"
-    ],
-    "Data & security": [
-      "SQL Server",
-      "MySQL",
-      "PostgreSQL",
-      "MongoDB",
-      "JWT",
-      "Auth0",
-      "RBAC"
-    ],
-    "Cloud & delivery": [
-      "AWS EC2 / ECR / ECS",
-      "S3 / CloudWatch",
-      "Docker",
-      "GitHub / GitLab",
-      "GitHub Actions",
-      "CI/CD",
-      "Git branching"
-    ],
-    "Testing & quality": [
-      "xUnit",
-      "Jest",
-      "Jasmine / Karma",
-      "Postman",
-      "Swagger",
-      "SonarQube",
-      "Unit testing"
-    ],
-    "AI-assisted development": [
-      "GitHub Copilot",
-      "Claude Code",
-      "Cursor",
-      "Antigravity",
-      "Codex",
-      "LLM prompt design",
-      "Agentic development"
-    ],
-    "Research & working knowledge": [
-      "Python (working knowledge)",
-      "Java (working knowledge)",
-      "Machine learning",
-      "NLP / OCR",
-      "YOLO / VGG16",
-      "DeepFace / CNN",
-      "RabbitMQ"
-    ]
+    "Languages": ["C#", "JavaScript", "TypeScript"],
+    "Software Engineering Foundations": ["OOP & SOLID", "Design Patterns", "Data Structures & Algorithms"],
+    "Frontend & Mobile": ["Angular", "React", "Next.js", "Flutter", "GetX", "React Native", "Expo"],
+    "Backend Development": ["ASP.NET / .NET", "NestJS", "Express.js"],
+    "APIs, Messaging & Integration": ["REST APIs", "GraphQL", "WebSockets", "RabbitMQ", "SAP B1 Service Layer"],
+    "Databases": ["SQL Server", "MySQL", "PostgreSQL", "MongoDB", "Hive"],
+    "Authentication & Security": ["JWT", "Auth0", "RBAC"],
+    "Cloud & DevOps": ["AWS EC2", "AWS ECR", "AWS ECS", "AWS S3", "CloudWatch", "Docker", "GitHub", "GitLab", "GitHub Actions", "CI/CD", "Git Branching"],
+    "Testing & Code Quality": ["xUnit", "Jest", "Jasmine / Karma", "Unit Testing", "SonarQube"],
+    "API & Development Tools": ["Postman", "Swagger"],
+    "AI-Assisted Development": ["GitHub Copilot", "Claude Code", "Cursor", "Antigravity", "Codex", "LLM Prompt Design", "Agentic Development"],
+    "AI/ML, Platforms & Working Knowledge": ["Machine Learning", "NLP / OCR", "YOLO / VGG16", "DeepFace / CNN", "Sitecore XP", "Python (working knowledge)", "Java (working knowledge)"]
   },
   "experience": [
     {
