@@ -6,7 +6,7 @@ import { portfolio, projects, skills, experience, education, publications } from
 
 const navigation = [
   ['About', 'about'], ['Experience', 'experience'], ['Projects', 'projects'],
-  ['Skills', 'skills'], ['Research', 'education'], ['Résumé', 'resume'],
+  ['Skills', 'skills'], ['Research', 'education'], ['Resume', 'resume'],
 ];
 const projectCategories = ['All', 'Web', 'Mobile', 'AI', 'Freelance', 'Personal', 'Research'] as const;
 type ProjectCategory = (typeof projectCategories)[number];
@@ -161,7 +161,7 @@ export default function Home() {
           <h1><span className="hero-name hero-enter hero-enter-2">Hashan</span><br/><span className="hero-enter hero-enter-3"><span className="gradient-text">Perera<span className="name-period">.</span></span></span></h1>
           <p className="hero-lead hero-enter hero-enter-4">Thoughtful code.<br/>Meaningful experiences.</p>
           <p className="hero-description hero-enter hero-enter-5">From enterprise .NET systems to Angular and NestJS platforms,<br className="desktop-break"/> I build, support, and ship software people can rely on.</p>
-          <div className="button-row hero-enter hero-enter-6"><a className="button primary" href="#projects">Explore my work <span>↗</span></a><a className="button secondary" href={portfolio.resume} download="Hashan-Perera-Resume.pdf">Download résumé <span>↓</span></a></div>
+          <div className="button-row hero-enter hero-enter-6"><a className="button primary" href="#projects">Explore my work <span>↗</span></a><a className="button secondary" href={portfolio.resume} download="Hashan-Perera-Resume.pdf">Download resume <span>↓</span></a></div>
           <div className="hero-foot hero-enter hero-enter-7"><span className="tiny-line"/> FULL-STACK · CLOUD · AI-ASSISTED DEVELOPMENT</div>
           {(portfolio.github || portfolio.linkedin) && <div className="hero-socials">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}</div>}
         </div>
@@ -244,7 +244,7 @@ export default function Home() {
       <section className="container resume-section" id="resume"><div className="resume-card">
         <div className="document-art" aria-hidden="true"><span>CV<span>↗</span></span><i/><i/><i/><div/><i/><i/></div>
         <div className="resume-copy"><p className="eyebrow">06 / TAKE IT WITH YOU</p><h2>The short version,<br/><span>on paper.</span></h2><p>My experience, skills, projects,<br/>and research in one place.</p></div>
-        <div className="resume-actions"><a className="button primary" href={portfolio.resume} download="Hashan-Perera-Resume.pdf">Download résumé <span>↓</span></a><a className="text-link" href={portfolio.resume} target="_blank" rel="noreferrer">View résumé <span>↗</span></a><small>PDF · Hashan Perera</small></div>
+        <div className="resume-actions"><a className="button primary" href={portfolio.resume} download="Hashan-Perera-Resume.pdf">Download resume <span>↓</span></a><a className="text-link" href={portfolio.resume} target="_blank" rel="noreferrer">View resume <span>↗</span></a><small>PDF · Hashan Perera</small></div>
       </div></section>
 
       <section className="section container contact-section" id="contact">

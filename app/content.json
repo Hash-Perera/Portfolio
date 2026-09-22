@@ -296,7 +296,7 @@
     {
       "name": "Outgrower",
       "type": "OFFLINE-FIRST MOBILE · ZAMBIA",
-      "categories": ["Mobile", "Web"],
+      "categories": ["Mobile"],
       "problem": "Field officers needed a reliable way to manage external farmers in rural areas with unstable or limited internet connectivity.\n\nThe application had to support 500+ field users while keeping data available offline and synchronizing safely once connectivity returned.",
       "whatIDid": "Solely developed the mobile application using Flutter and GetX, with Hive DB for local offline storage.\n\nImplemented an offline-first synchronization mechanism with queued operations, retry handling, and automatic data synchronization.\n\nDeveloped the NestJS backend, integrated SAP Business One through the Service Layer, and built a responsive UI optimized for field usage.",
       "architecture": ["Flutter App", "Hive Local Storage", "Sync Queue", "NestJS REST API", "MongoDB / SAP B1 Service Layer"],
