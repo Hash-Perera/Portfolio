@@ -9,8 +9,8 @@
     "phone": "+94 77 553 8374",
     "phoneHref": "+94775538374",
     "resume": "/resume/Hashan_Perera_Resume.pdf",
-    "github": "",
-    "linkedin": "",
+    "github": "https://github.com/Hash-Perera",
+    "linkedin": "https://www.linkedin.com/in/pereravhp/",
     "summary": "Software engineer with 3+ years of experience building, supporting, and deploying production applications across .NET, Angular, React, NestJS, MongoDB, SQL Server, and AWS.",
     "about": [
       "I build software that connects thoughtful interfaces with dependable systems. Based in Horana, Sri Lanka, my work spans enterprise .NET applications, Angular and NestJS platforms, and mobile tools that work even when connectivity doesn’t.",
@@ -366,8 +366,8 @@
         "Built .NET REST API endpoints and supporting business logic.",
         "Applied CQRS and MediatR to separate command and query responsibilities."
       ],
-      "url": "",
-      "linkLabel": ""
+      "url": "https://www.lilylanka.com/",
+      "linkLabel": "Visit LilyLanka"
     },
     {
       "name": "CRM System",

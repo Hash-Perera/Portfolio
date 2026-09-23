@@ -13,7 +13,7 @@ import {
 } from 'react-icons/si';
 import { TbBrandOpenai } from 'react-icons/tb';
 import {
-  FaAws, FaBrain, FaCloud, FaCode, FaCodeBranch, FaDatabase, FaDiagramProject,
+  FaAws, FaBrain, FaCloud, FaCode, FaCodeBranch, FaDatabase, FaDiagramProject, FaLinkedin,
   FaFileImage, FaFlask, FaKey, FaLayerGroup, FaPlug, FaRobot, FaShieldHalved,
   FaWandMagicSparkles,
 } from 'react-icons/fa6';
@@ -287,7 +287,6 @@ export default function Home() {
           <p className="hero-description hero-enter hero-enter-5">From enterprise .NET systems to Angular and NestJS platforms,<br className="desktop-break"/> I build, support, and ship software people can rely on.</p>
           <div className="button-row hero-enter hero-enter-6"><a className="button primary" href="#projects">Explore my work <span>↗</span></a><a className="button secondary" href={portfolio.resume} download="Hashan-Perera-Resume.pdf">Download resume <span>↓</span></a></div>
           <div className="hero-foot hero-enter hero-enter-7"><span className="tiny-line"/> FULL-STACK · CLOUD · AI-ASSISTED DEVELOPMENT</div>
-          {(portfolio.github || portfolio.linkedin) && <div className="hero-socials">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}</div>}
         </div>
         {portfolio.portrait ? <figure ref={portrait} className="hero-portrait hero-enter hero-enter-8" onPointerMove={updatePortraitDepth} onPointerLeave={resetPortraitDepth}>
           <div className="portrait-label"><span>01 / THE ENGINEER</span><span className="portrait-cross" aria-hidden="true">+</span></div>
@@ -296,6 +295,7 @@ export default function Home() {
             <span className="portrait-orbit portrait-orbit-outer" aria-hidden="true"/>
             <div className="portrait-frame"><Image src={portfolio.portrait} alt="Hashan Perera" width={1666} height={2082} priority unoptimized className="portrait-photo" /></div>
           </div>
+          {(portfolio.github || portfolio.linkedin) && <div className="portrait-socials">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer"><SiGithub aria-hidden="true"/><span>GitHub</span><i aria-hidden="true">↗</i></a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer"><FaLinkedin aria-hidden="true"/><span>LinkedIn</span><i aria-hidden="true">↗</i></a>}</div>}
           <figcaption><span><strong>3+</strong> YEARS OF EXPERIENCE</span><span>BUILDING WITH<br/><b>Purpose & precision.</b></span></figcaption>
         </figure> : <div className="hero-art" aria-label="Decorative code card introducing Hashan">
           <div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/>
@@ -375,11 +375,11 @@ export default function Home() {
         <p className="eyebrow">07 / WHAT’S NEXT?</p><h2>Good things start<br/>with a <em>conversation.</em></h2><p>Have a project in mind, an interesting opportunity,<br/>or just want to say hello? I’d love to hear from you.</p>
         <a className="email-link" href={`mailto:${portfolio.email}`}>{portfolio.email} <span>↗</span></a>
         <div className="contact-details"><span>{portfolio.location}</span><span aria-hidden="true">·</span><a href={`tel:${portfolio.phoneHref}`}>{portfolio.phone}</a></div>
-        <div className="social-links">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>}</div>
+        <div className="social-links">{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer"><FaLinkedin aria-hidden="true"/><span>LinkedIn</span><i aria-hidden="true">↗</i></a>}{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer"><SiGithub aria-hidden="true"/><span>GitHub</span><i aria-hidden="true">↗</i></a>}</div>
       </section>
     </main>
 
-    <footer className="container footer"><a className="brand" href="#main" aria-label="Back to the top">{portfolio.initials}<span>.</span></a><p>© {new Date().getFullYear()} {portfolio.name}. Built with care.</p><a href="#main">Back to top ↑</a></footer>
+    <footer className="container footer"><a className="brand" href="#main" aria-label="Back to the top">{portfolio.initials}<span>.</span></a><p>© {new Date().getFullYear()} {portfolio.name}. Built with care.</p><div className="footer-socials">{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer" aria-label="Hashan Perera on GitHub"><SiGithub aria-hidden="true"/></a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer" aria-label="Hashan Perera on LinkedIn"><FaLinkedin aria-hidden="true"/></a>}</div><a href="#main">Back to top ↑</a></footer>
 
     <dialog ref={dialog} aria-labelledby="project-title" className="project-dialog" onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
       <button type="button" className="dialog-close" aria-label="Close project details" onClick={() => dialog.current?.close()}>×</button>
