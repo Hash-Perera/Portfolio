@@ -8,7 +8,7 @@
     "email": "hashperera.v@gmail.com",
     "phone": "+94 77 553 8374",
     "phoneHref": "+94775538374",
-    "resume": "/resume.pdf",
+    "resume": "/resume/Hashan_Perera_Resume.pdf",
     "github": "",
     "linkedin": "",
     "summary": "Software engineer with 3+ years of experience building, supporting, and deploying production applications across .NET, Angular, React, NestJS, MongoDB, SQL Server, and AWS.",
@@ -460,7 +460,7 @@
       "architectureDescription": "Independent Python/FastAPI services handle damage assessment, fraud detection, sentiment analysis, and policy mapping. RabbitMQ manages asynchronous processing between services.\n\nServices are containerized with Docker, stored in AWS ECR, deployed through ECS, use S3 for media storage, and are monitored through CloudWatch, with CI/CD handling deployments.",
       "detailRole": "AI Engineer / System Architect",
       "roleDescription": "Responsible for the fraud detection research component, overall service architecture, microservice communication, AWS deployment architecture, Docker/ECS infrastructure, RabbitMQ integration, CI/CD, and production monitoring.",
-      "detailTechnologies": ["Python", "FastAPI", "AI/ML", "YOLO", "VGG16", "DeepFace", "OCR", "RabbitMQ", "Docker", "AWS ECS", "ECR", "S3", "CloudWatch", "CI/CD"],
+      "detailTechnologies": ["Python", "FastAPI", "AI/ML", "YOLO", "VGG16", "DeepFace", "OCR", "RabbitMQ", "Docker", "AWS", "ECS", "ECR", "S3", "CloudWatch", "CI/CD"],
       "description": "An AI-powered insurance platform connecting damage detection, fraud analysis, sentiment, and policy matching.",
       "tags": [
         "Python",
